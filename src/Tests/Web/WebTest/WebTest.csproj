@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="browsers.json" />
     <None Remove="browsers1.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <ApplicationDefinition Include="browsers1.json">
+    <EmbeddedResource Include="browsers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </ApplicationDefinition>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

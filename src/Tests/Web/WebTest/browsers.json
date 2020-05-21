@@ -1,0 +1,51 @@
+{
+  "Browsers": [
+    {
+      "Browser": "Chrome",
+      "Version": "81.0.4044.138",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    },
+    {
+      "Browser": "Firefox",
+      "Version": "Latest",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    },
+    {
+      "Browser": "InternetExplorer",
+      "Platform":  "X32",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    },
+    {
+      "Browser": "Edge",
+      "Version": "81.0.416.72",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    },
+    {
+      "Browser": "Opera",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    },
+    {
+      "Browser": "Safari",
+      "LogLevel": "Debug",
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
+    }
+  ]
+}
