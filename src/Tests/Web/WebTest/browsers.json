@@ -2,7 +2,7 @@
   "Browsers": [
     {
       "Browser": "Chrome",
-      "Version": "81.0.4044.138",
+      "Version": "Latest",
       "IsHeadless": false,
       "LogLevel": "Debug",
       "Arguments": [],
