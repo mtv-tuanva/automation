@@ -12,7 +12,7 @@ namespace Automation.Web.Core.Browsers
 {
     public class OperaBrowser : Browser
     {
-        public OperaBrowser(string jsonConfigFileName = "browsers.json") : 
+        public OperaBrowser(string jsonConfigFileName = null) : 
             this(BrowserConfig.ReadFromConfig(BrowserType.Opera, jsonConfigFileName)) { }
 
         public OperaBrowser(BrowserConfig browserConfig) : base(BrowserType.Opera)

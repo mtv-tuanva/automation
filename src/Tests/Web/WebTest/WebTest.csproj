@@ -8,13 +8,12 @@
 
   <ItemGroup>
     <None Remove="browsers.json" />
-    <None Remove="browsers1.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="browsers.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Content Include="browsers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

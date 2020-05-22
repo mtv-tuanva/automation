@@ -7,7 +7,7 @@ namespace Tests.Web.WebTest.Core
     [TestFixture(BrowserType.Firefox)]
     [TestFixture(BrowserType.Edge)]
     [TestFixture(BrowserType.InternetExplorer)]
-    [TestFixture(BrowserType.Opera)]
+    //[TestFixture(BrowserType.Opera)]
     //[TestFixture(BrowserType.Safari)]
     public class BrowserTests
     {

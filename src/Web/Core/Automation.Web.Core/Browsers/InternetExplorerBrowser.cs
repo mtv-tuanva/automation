@@ -11,7 +11,7 @@ namespace Automation.Web.Core.Browsers
 {
     public class InternetExplorerBrowser : Browser
     {
-        public InternetExplorerBrowser(string jsonConfigFileName = "browsers.json") 
+        public InternetExplorerBrowser(string jsonConfigFileName = null) 
             : this(BrowserConfig.ReadFromConfig(BrowserType.InternetExplorer, jsonConfigFileName)) { }
 
         public InternetExplorerBrowser(BrowserConfig browserConfig) : base(BrowserType.InternetExplorer)

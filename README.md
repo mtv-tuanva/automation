@@ -63,7 +63,7 @@ This configuration is based on your browser version & your expection browser beh
 
 5. Add your test code
 ```
-	[TestFixture(BrowserType.Chrome)]
+[TestFixture(BrowserType.Chrome)]
     [TestFixture(BrowserType.Firefox)]
     [TestFixture(BrowserType.Edge)]
     [TestFixture(BrowserType.InternetExplorer)]
