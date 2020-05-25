@@ -6,7 +6,7 @@
     <Company>MTI</Company>
     <PackageTags>Web Automation Test</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<Version>1.0.2</Version>
   </PropertyGroup>

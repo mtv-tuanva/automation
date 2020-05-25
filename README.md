@@ -5,7 +5,7 @@ This library is still developing, so please keep looking. Thanks!
 1. Create your test project.
 2. Install any unit test framework that you like. We will use NUnit in this tutorial.
 3. Installation the nuget package: `Automation.Web.Core`
-4. Create a `browsers.json` file as below in your test project and set it as a `Content or Embedded resource` in the `Build action` and `Copy to Output Directory`
+4. Create a `browsers.json` file as below in your test project and set it as a `Content` in the `Build action` and `Copy to Output Directory`
 ```
 	{
 	  "Browsers": [
