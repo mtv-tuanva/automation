@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Automation.Web.Core
 {
-    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole
+    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole, IBrowserAction, IBrowserFindElement, IBrowserScreenshot, IBrowserTab
     {
         /// <summary>
         /// Indicate the browser is Chrome or Firefox or IE or Safari...

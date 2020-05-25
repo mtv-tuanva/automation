@@ -13,7 +13,7 @@ namespace Automation.Web.Core.Browsers
     //Download the latest Edge from https://www.microsoft.com/en-us/edge
     public class EdgeBrowser : Browser
     {
-        public EdgeBrowser(string jsonConfigFileName = "browsers.json") 
+        public EdgeBrowser(string jsonConfigFileName = null) 
             : this(BrowserConfig.ReadFromConfig(BrowserType.Edge, jsonConfigFileName)) { }
 
         public EdgeBrowser(BrowserConfig browserConfig) : base(BrowserType.Edge)

@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
 using WebDriverManager.Helpers;
@@ -11,6 +12,13 @@ namespace Automation.Web.Core.Config
 {
     public class BrowserConfig
     {
+        public BrowserConfig() { }
+
+        public BrowserConfig(BrowserType browserType)
+        {
+            Browser = browserType;
+        }
+
         /// <summary>
         /// Browser type, that is specify the browser is chrome or firefox or IE or Safari...
         /// </summary>
@@ -42,7 +50,7 @@ namespace Automation.Web.Core.Config
         /// The log level of browser
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public LogLevel LogLevel { get; set; }
+        public LogLevel LogLevel { get; set; } = LogLevel.Warning;
 
         /// <summary>
         ///     The implicit wait timeout in second, which is the amount of time the driver
@@ -71,15 +79,14 @@ namespace Automation.Web.Core.Config
         /// <param name="browserType">The browser type.</param>
         /// <param name="jsonConfigFileName">The json config file of browser.</param>
         /// <returns></returns>
-        public static BrowserConfig ReadFromConfig(BrowserType browserType, string jsonConfigFileName = "browsers.json")
+        public static BrowserConfig ReadFromConfig(BrowserType browserType, string jsonConfigFileName = null)
         {
-            var config = new ConfigurationBuilder()
-             .SetBasePath(Environment.CurrentDirectory)
-             .AddJsonFile(jsonConfigFileName, optional: false, reloadOnChange: true)
-             .AddEnvironmentVariables()
-             .Build();
+            if (string.IsNullOrEmpty(jsonConfigFileName) && !File.Exists(Path.Combine(Environment.CurrentDirectory, BrowserConfigs.DefaultConfigurationFileName)))
+            {
+                return new BrowserConfig(browserType);
+            }
 
-            return config.Get<BrowserConfigs>().Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig();
+            return BrowserConfigs.ReadFromConfig(jsonConfigFileName)?.Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig();
         }
     }
 }

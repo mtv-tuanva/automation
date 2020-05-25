@@ -1,5 +1,6 @@
 {
   "ExecutableBrowsers": [ "Chrome", "Firefox" ],
+
   "Browsers": [
     {
       "Browser": "Chrome",
@@ -29,7 +30,7 @@
     },
     {
       "Browser": "Edge",
-      "Version": "Latest",
+      "Version": "81.0.416.72",
       "LogLevel": "Debug",
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
@@ -39,8 +40,8 @@
       "Browser": "Opera",
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "Safari",

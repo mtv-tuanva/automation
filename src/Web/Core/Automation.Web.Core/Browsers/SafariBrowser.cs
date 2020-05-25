@@ -9,7 +9,7 @@ namespace Automation.Web.Core.Browsers
 {
     class SafariBrowser : Browser
     {
-        public SafariBrowser(string jsonConfigFileName = "browsers.json") : 
+        public SafariBrowser(string jsonConfigFileName = null) : 
             this(BrowserConfig.ReadFromConfig(BrowserType.Safari, jsonConfigFileName)) { }
         
         public SafariBrowser(BrowserConfig browserConfig) : base(BrowserType.Safari)

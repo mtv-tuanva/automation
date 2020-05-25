@@ -154,5 +154,19 @@ namespace Automation.Web.Core
         /// <param name="selectorType"></param>
         /// <param name="selectIndex"></param>
         void ScrollTo(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0);
+
+        /// <summary>
+        /// Mouse over to the element
+        /// </summary>
+        /// <param name="webElement">The element that will be scrolled to.</param>
+        void MouseOverTo(IWebElement webElement);
+
+        /// <summary>
+        /// Mouse over to the element
+        /// </summary>
+        /// <param name="selector">The element that will be scrolled to.</param>
+        /// <param name="selectorType"></param>
+        /// <param name="selectIndex"></param>
+        void MouseOverTo(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0);
     }
 }

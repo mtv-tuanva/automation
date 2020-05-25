@@ -1,13 +1,15 @@
 {
+  "ExecutableBrowsers": [ "Chrome", "Firefox" ],
+
   "Browsers": [
     {
       "Browser": "Chrome",
-      "Version": "81.0.4044.138",
+      "Version": "Latest",
       "IsHeadless": false,
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "Firefox",
@@ -15,37 +17,37 @@
       "IsHeadless": false,
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "InternetExplorer",
-      "Platform":  "X32",
+      "Platform": "X32",
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "Edge",
-      "Version": "81.0.416.72",
+      "Version": "83.0.478.37",
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "Opera",
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Browser": "Safari",
       "LogLevel": "Debug",
-      "ImplicitTimeoutInSecond": 10,
-      "DefaultWaitTimeInSecond": 10
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
     }
   ]
 }

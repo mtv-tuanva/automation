@@ -12,7 +12,7 @@ namespace Automation.Web.Core.Browsers
 {
     public class ChromeBrowser : Browser
     {
-        public ChromeBrowser(string jsonConfigFileName = "browsers.json") : 
+        public ChromeBrowser(string jsonConfigFileName = null) : 
             this(BrowserConfig.ReadFromConfig(BrowserType.Chrome, jsonConfigFileName)) { }
 
         public ChromeBrowser(BrowserConfig browserConfig) : base(BrowserType.Chrome)

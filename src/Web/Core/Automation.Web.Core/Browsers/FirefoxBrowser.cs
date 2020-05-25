@@ -11,7 +11,7 @@ namespace Automation.Web.Core.Browsers
 {
     public class FirefoxBrowser : Browser
     {
-        public FirefoxBrowser(string jsonConfigFileName = "browsers.json") 
+        public FirefoxBrowser(string jsonConfigFileName = null) 
             : this(BrowserConfig.ReadFromConfig(BrowserType.Firefox, jsonConfigFileName)) { }
 
         public FirefoxBrowser(BrowserConfig browserConfig) : base(BrowserType.Firefox)

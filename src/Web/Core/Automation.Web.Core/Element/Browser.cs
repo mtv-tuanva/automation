@@ -15,7 +15,14 @@ namespace Automation.Web.Core
         /// <returns>The first OpenQA.Selenium.IWebElement matching the criteria.</returns>
         public IWebElement FindElement(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0)
         {
-            return Until((driver) => selectIndex > 0 ? driver.FindElements(GetBy(selector, selectorType))[0] : driver.FindElement(GetBy(selector, selectorType)));
+            return Until((driver)
+                =>
+            {
+                return selectIndex > 0 ?
+                driver.FindElements(GetBy(selector, selectorType))[selectIndex]
+                : driver.FindElement(GetBy(selector, selectorType));
+
+            });
         }
 
         /// <summary>
