@@ -48,6 +48,12 @@ namespace Automation.Web.Core
         public void ScrollTo(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0)
             => ScrollTo(FindElement(selector, selectorType, selectIndex));
 
+        public void MouseOverTo(IWebElement webElement)
+            => Actions.MoveToElement(webElement).Perform();
+
+        public void MouseOverTo(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0)
+            => MouseOverTo(FindElement(selector, selectorType, selectIndex));
+
         public void SendKeys(IWebElement element, string keysToSend)
             => Actions.SendKeys(element, keysToSend).Perform();
 

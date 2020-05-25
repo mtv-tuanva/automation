@@ -12,8 +12,6 @@ namespace Automation.Web.Core.Config
 {
     public class BrowserConfig
     {
-        public const string DefaultConfigurationFileName = "browsers.json";
-
         public BrowserConfig() { }
 
         public BrowserConfig(BrowserType browserType)
@@ -83,23 +81,12 @@ namespace Automation.Web.Core.Config
         /// <returns></returns>
         public static BrowserConfig ReadFromConfig(BrowserType browserType, string jsonConfigFileName = null)
         {
-            if (string.IsNullOrEmpty(jsonConfigFileName))
+            if (string.IsNullOrEmpty(jsonConfigFileName) && !File.Exists(Path.Combine(Environment.CurrentDirectory, BrowserConfigs.DefaultConfigurationFileName)))
             {
-                if (!File.Exists(Path.Combine(Environment.CurrentDirectory, DefaultConfigurationFileName)))
-                {
-                    return new BrowserConfig(browserType);
-                }
-
-                jsonConfigFileName = DefaultConfigurationFileName;
+                return new BrowserConfig(browserType);
             }
 
-            var config = new ConfigurationBuilder()
-             .SetBasePath(Environment.CurrentDirectory)
-             .AddJsonFile(jsonConfigFileName, optional: false, reloadOnChange: true)
-             .AddEnvironmentVariables()
-             .Build();
-
-            return config.Get<BrowserConfigs>().Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig();
+            return BrowserConfigs.ReadFromConfig(jsonConfigFileName)?.Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig();
         }
     }
 }
