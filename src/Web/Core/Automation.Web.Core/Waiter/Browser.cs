@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Automation.Web.Core
 {
@@ -29,6 +31,9 @@ namespace Automation.Web.Core
 
         public bool WaitUntilInvisibilityOfElementWithText(string selector, string text, SelectorType selectorType = SelectorType.CssSelector)
             => Wait.Until(ExpectedConditions.InvisibilityOfElementWithText(GetBy(selector, selectorType), text));
+
+        public ReadOnlyCollection<IWebElement> WaitUntilVisibilityOfAllElements(string selector, SelectorType selectorType = SelectorType.CssSelector)
+            => Wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(GetBy(selector, selectorType)));
 
         public bool WaitUntilTextToBePresentInElement(string selector, string text, SelectorType selectorType = SelectorType.CssSelector)
             => Wait.Until(ExpectedConditions.TextToBePresentInElementLocated(GetBy(selector, selectorType), text));

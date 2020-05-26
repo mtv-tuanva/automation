@@ -170,11 +170,11 @@ public class LoginScenario : WebTestBase
         }
 
         [Test]
-        public void Test()
+        public void LoginSuccess()
         {
             pages.HomePage.GoHere();
             pages.HomePage.GotoLogin();
-            pages.LoginPage.Login("automation.web.test", "0123456789a@T");
+            pages.LoginPage.Login("**************", "****************");
 
             Assert.True(pages.HomePage.IsDisplaying());
         }

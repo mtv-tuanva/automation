@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections.ObjectModel;
 
 namespace Automation.Web.Core
 {
@@ -24,6 +25,7 @@ namespace Automation.Web.Core
         bool WaitUntilElementToBeSelected(string selector, SelectorType selectorType = SelectorType.CssSelector);
         bool WaitUntilInvisibilityOfElement(string selector, SelectorType selectorType = SelectorType.CssSelector);
         bool WaitUntilInvisibilityOfElementWithText(string selector, string text, SelectorType selectorType = SelectorType.CssSelector);
+        ReadOnlyCollection<IWebElement> WaitUntilVisibilityOfAllElements(string selector, SelectorType selectorType = SelectorType.CssSelector);
         bool WaitUntilTextToBePresentInElement(string selector, string text, SelectorType selectorType = SelectorType.CssSelector);
         bool WaitUntilTitleContains(string title);
         bool WaitUntilTitleIs(string title);

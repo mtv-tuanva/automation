@@ -10,7 +10,7 @@ namespace Automation.Web.Core
         public void Click() => Actions.Click().Perform();
 
         public void Click(IWebElement onElement)
-            => Actions.Click(onElement).Perform();
+            => onElement.Click();
 
         public void Click(string selector, SelectorType selectorType = SelectorType.CssSelector, int selectIndex = 0)
             => Click(FindElement(selector, selectorType, selectIndex));
