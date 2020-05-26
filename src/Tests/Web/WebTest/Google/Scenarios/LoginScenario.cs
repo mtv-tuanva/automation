@@ -20,7 +20,7 @@ namespace WebTest.Google.Scenarios
         }
 
         [Test]
-        public void Test()
+        public void LoginSuccess()
         {
             pages.HomePage.GoHere();
             pages.HomePage.GotoLogin();
