@@ -2,33 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<Authors>Tuan Vo</Authors>
-    <Company>MTI</Company>
-	<PackageTags>Web Automation Test</PackageTags>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<Version>1.0.1</Version>
-	<IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="browsers.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="browsers.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Automation.Web.Core" Version="1.0.3" />
     <PackageReference Include="NUnit" Version="3.12.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Core\Automation.Web.Core\Automation.Web.Core.csproj" />
   </ItemGroup>
 
 </Project>
