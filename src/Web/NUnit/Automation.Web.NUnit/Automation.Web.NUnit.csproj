@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Automation.Web.Core" Version="1.0.3" />
+    <PackageReference Include="Automation.Web.Core" Version="1.0.4-preview.131" />
     <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
 
