@@ -8,15 +8,15 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="browsers.json" />
+    <None Remove="browsers-template.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="browsers.json">
+    <Content Include="browsers-template.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

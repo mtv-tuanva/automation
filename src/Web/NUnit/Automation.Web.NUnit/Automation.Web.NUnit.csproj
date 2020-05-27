@@ -2,14 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<Authors>Tuan Vo</Authors>
+    <Authors>Tuan Vo</Authors>
     <Company>MTI</Company>
-	<PackageTags>Web Automation Test</PackageTags>
+    <PackageTags>Web Automation Test</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="browsers-template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="browsers-template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Automation.Web.Core" Version="1.0.3" />
