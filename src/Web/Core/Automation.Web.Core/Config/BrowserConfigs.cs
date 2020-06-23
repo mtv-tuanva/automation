@@ -13,7 +13,7 @@ namespace Automation.Web.Core.Config
         [JsonConverter(typeof(StringEnumConverter))]
         public BrowserType[] ExecutableBrowsers { get; set; }
 
-        public BrowserConfig[] Browsers { get; set; }
+        public BrowserConfig[] Browsers { get; set; }        
 
         /// <summary>
         /// Read the BrowserConfigs from a json file
@@ -39,6 +39,27 @@ namespace Automation.Web.Core.Config
              .Build();
 
             return config.Get<BrowserConfigs>();
+        }
+
+        /// <summary>
+        /// Read the configs from a json file
+        /// </summary>
+        /// <param name="jsonConfigFileName">The json config file.</param>
+        /// <returns>T</returns>
+        public static T ReadFromConfig<T>(string jsonConfigFileName)
+        {
+            if (string.IsNullOrEmpty(jsonConfigFileName))
+            {
+                throw new ArgumentNullException(nameof(jsonConfigFileName), $"The json config is required.");
+            }
+
+            var config = new ConfigurationBuilder()
+             .SetBasePath(Environment.CurrentDirectory)
+             .AddJsonFile(jsonConfigFileName, optional: false, reloadOnChange: true)
+             .AddEnvironmentVariables()
+             .Build();
+
+            return config.Get<T>();
         }
     }
 }

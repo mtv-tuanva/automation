@@ -9,6 +9,8 @@
         PartialLinkText,
         TagName,
         XPath,
-        CssSelector
+        CssSelector,
+        Title,
+        Url
     }
 }

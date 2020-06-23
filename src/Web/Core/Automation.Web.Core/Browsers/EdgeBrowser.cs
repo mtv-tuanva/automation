@@ -67,6 +67,7 @@ namespace Automation.Web.Core.Browsers
 
                     Console.WriteLine(ex);
                     Console.WriteLine("Keep trying to create EdgDriver...");
+                    thrownException = ex;
                 }
             }
 

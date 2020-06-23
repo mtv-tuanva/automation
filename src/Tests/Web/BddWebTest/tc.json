@@ -1,0 +1,100 @@
+{
+  "ExecutableBrowsers": [ "Chrome"],
+
+  "Browsers": [
+    {
+      "Browser": "Chrome",
+      "Version": "Latest",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
+    },
+    {
+      "Browser": "Firefox",
+      "Version": "Latest",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
+    },
+    //{
+    //  "Browser": "InternetExplorer",
+    //  "Platform": "X32",
+    //  "LogLevel": "Debug",
+    //  "Arguments": [],
+    //  "ImplicitTimeoutInSecond": 120,
+    //  "DefaultWaitTimeInSecond": 120
+    //},
+    //{
+    //  "Browser": "Edge",
+    //  "Version": "81.0.416.72",
+    //  "LogLevel": "Debug",
+    //  "Arguments": [],
+    //  "ImplicitTimeoutInSecond": 30,
+    //  "DefaultWaitTimeInSecond": 30
+    //},
+    {
+      "Browser": "Opera",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
+    }
+  ],
+
+  "Steps": [
+    {
+      "Order": 1,
+      "Action": "Redirect",
+      "Value": "https://google.com"
+    },
+    {
+      "Order": 2,
+      "Action": "Click",
+      "SelectorType": "Id",
+      "Selector": "gb_70",
+      "DisplayName": "Login Button"
+    },
+    {
+      "Order": 3,
+      "Action": "Enter",
+      "SelectorType": "Id",
+      "Selector": "identifierId",
+      "DisplayName": "UserName",
+      "Value": "automation.web.test"
+    },
+    {
+      "Order": 4,
+      "Action": "Click",
+      "SelectorType": "Id",
+      "Selector": "identifierNext",
+      "DisplayName": "Next"
+    },
+    {
+      "Order": 5,
+      "Action": "Enter",
+      "SelectorType": "Name",
+      "Selector": "password",
+      "DisplayName": "Password",
+      "Value": "0123456789a@T"
+    },
+    {
+      "Order": 6,
+      "Action": "Click",
+      "SelectorType": "Id",
+      "Selector": "passwordNext",
+      "DisplayName": "Next"
+    },
+    {
+      "Order": 7,
+      "Action": "Assert",
+      "SelectorType": "Title",
+      "DisplayName": "Title",
+      "AssertCondition": "Equals",
+      "Value": "Google"
+    }
+  ]
+}

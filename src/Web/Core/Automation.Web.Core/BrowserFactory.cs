@@ -1,4 +1,5 @@
 ﻿using Automation.Web.Core.Browsers;
+using Automation.Web.Core.Config;
 using System.ComponentModel;
 
 namespace Automation.Web.Core
@@ -29,6 +30,32 @@ namespace Automation.Web.Core
             }
 
             throw new InvalidEnumArgumentException($"The value of {nameof(browserType)} isn't supported.");
+        }
+
+        public static IBrowser CreateBrowser(BrowserConfig browserConfig)
+        {
+            switch (browserConfig.Browser)
+            {
+                case BrowserType.Chrome:
+                    return new ChromeBrowser(browserConfig);
+
+                case BrowserType.Firefox:
+                    return new FirefoxBrowser(browserConfig);
+
+                case BrowserType.Edge:
+                    return new EdgeBrowser(browserConfig);
+
+                case BrowserType.InternetExplorer:
+                    return new InternetExplorerBrowser(browserConfig);
+
+                case BrowserType.Opera:
+                    return new OperaBrowser(browserConfig);
+
+                case BrowserType.Safari:
+                    return new SafariBrowser(browserConfig);
+            }
+
+            throw new InvalidEnumArgumentException($"The value of {nameof(browserConfig.Browser)} isn't supported.");
         }
     }
 }

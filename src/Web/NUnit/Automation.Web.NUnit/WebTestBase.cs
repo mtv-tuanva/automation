@@ -2,6 +2,7 @@
 using Automation.Web.Core.Config;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using System;
 
 namespace Automation.Web.NUnit
 {
@@ -11,7 +12,11 @@ namespace Automation.Web.NUnit
     {
         protected IBrowser Browser;
         protected readonly BrowserType BrowserType;
-        public virtual ScreenshotCondition ScreenshotCondition { get; set; } = ScreenshotCondition.Failure;
+        public Func<ResultState, bool> AutoTakeScreenshotCondition =
+            (result) =>
+            {
+                return true;
+            };
 
         public WebTestBase(BrowserType browserType)
         {
@@ -27,25 +32,9 @@ namespace Automation.Web.NUnit
         [TearDown]
         public virtual void TearDown()
         {
-            switch (ScreenshotCondition)
+            if (AutoTakeScreenshotCondition(TestContext.CurrentContext.Result.Outcome))
             {
-                case ScreenshotCondition.Always:
-                    TakeScreenshot();
-                    break;
-
-                case ScreenshotCondition.Success:
-                    if (TestContext.CurrentContext.Result.Outcome == ResultState.Success)
-                    {
-                        TakeScreenshot();
-                    }
-                    break;
-
-                case ScreenshotCondition.Failure:
-                    if (TestContext.CurrentContext.Result.Outcome == ResultState.Failure)
-                    {
-                        TakeScreenshot();
-                    }
-                    break;
+                TakeScreenshot();
             }
             
             Browser.Quit();

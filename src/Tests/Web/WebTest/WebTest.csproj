@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Automation.Web.NUnit" Version="1.0.1" />
     <PackageReference Include="coverlet.msbuild" Version="2.8.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -33,10 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Core\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Web\NUnit\Automation.Web.NUnit\Automation.Web.NUnit.csproj" />
   </ItemGroup>
 
 </Project>
