@@ -1,7 +1,6 @@
 ﻿using Automation.Web.Core.Config;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using WebDriverManager;
@@ -11,15 +10,21 @@ namespace Automation.Web.Core.Browsers
 {
     public class InternetExplorerBrowser : Browser
     {
-        public InternetExplorerBrowser(string jsonConfigFileName = null) 
+        public InternetExplorerBrowser(string jsonConfigFileName = null)
             : this(BrowserConfig.ReadFromConfig(BrowserType.InternetExplorer, jsonConfigFileName)) { }
+
+        public InternetExplorerBrowser(string id, string jsonConfigFileName = null) :
+            this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
+        { }
 
         public InternetExplorerBrowser(BrowserConfig browserConfig) : base(BrowserType.InternetExplorer)
         {
             if (browserConfig == null)
-                throw new ArgumentNullException(nameof(browserConfig));
+            {
+                browserConfig = new BrowserConfig { Browser = BrowserType.InternetExplorer };
+            }
 
-            new DriverManager().SetUpDriver(new InternetExplorerConfig(), browserConfig.Version, browserConfig.Platform);
+            new DriverManager().SetUpDriver(new InternetExplorerConfig(), browserConfig.Version, browserConfig.OSPlatform);
             var driverOption = new InternetExplorerOptions() { IgnoreZoomLevel = true };
 
             //IE doesn't support the headless mode
@@ -28,7 +33,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override RemoteWebDriver WebDriver { get; protected set; }
+        public override WebDriver WebDriver { get; protected set; }
         public override WebDriverWait Wait { get; protected set; }
     }
 }

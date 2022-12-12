@@ -1,10 +1,6 @@
 ﻿using Automation.Web.Core.Helpers;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Html5;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.IO;
 
 namespace Automation.Web.Core
 {
@@ -24,7 +20,7 @@ namespace Automation.Web.Core
 
         public BrowserType BrowserType { get; }
 
-        public abstract RemoteWebDriver WebDriver { get; protected set; }
+        public abstract WebDriver WebDriver { get; protected set; }
 
         public abstract WebDriverWait Wait { get; protected set; }
 
@@ -36,17 +32,7 @@ namespace Automation.Web.Core
 
         public IWindow Window => WebDriver.Manage().Window;
 
-        public bool HasWebStorage => WebDriver.HasWebStorage;
-
-        public IWebStorage WebStorage => WebDriver.WebStorage;
-
-        public bool HasLocationContext => WebDriver.HasLocationContext;
-
-        public IApplicationCache ApplicationCache => WebDriver.ApplicationCache;
-
         public string Url { get => WebDriver.Url; set => WebDriver.Url = value; }
-
-        public ILocationContext LocationContext => WebDriver.LocationContext;
 
         public IFileDetector FileDetector { get => WebDriver.FileDetector; set => WebDriver.FileDetector = value; }
 

@@ -4,6 +4,19 @@
   "Browsers": [
     {
       "Browser": "Chrome",
+      "DeviceName": "My Device1",
+      "PlatformName": "Android",
+      "PlatformVersion": "11.0",
+      "AutomationName": "UIAutomator2",
+      "Version": "Latest",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
+    },
+    {
+      "Browser": "Chrome",
       "Version": "Latest",
       "IsHeadless": false,
       "LogLevel": "Debug",

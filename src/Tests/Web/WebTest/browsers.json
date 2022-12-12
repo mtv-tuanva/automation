@@ -1,8 +1,22 @@
 {
-  "ExecutableBrowsers": [ "Chrome", "Firefox" ],
-
+  "ExecutableBrowsers": [ "Android" ],
   "Browsers": [
     {
+      "Id": "Android",
+      "Browser": "Chrome",
+      "Platform": "Android",
+      "PlatformVersion": "11.0",
+      "DeviceName": "Pixel5",
+      "AutomationName": "UIAutomator2",
+      "ServerUrl": "http://127.0.0.1:4723",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 3000
+    },
+    {
+      "Id": "Chrome",
       "Browser": "Chrome",
       "Version": "Latest",
       "IsHeadless": false,
@@ -12,6 +26,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Firefox",
       "Browser": "Firefox",
       "Version": "Latest",
       "IsHeadless": false,
@@ -21,6 +36,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "InternetExplorer",
       "Browser": "InternetExplorer",
       "Platform": "X32",
       "LogLevel": "Debug",
@@ -29,21 +45,24 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Edge",
       "Browser": "Edge",
-      "Version": "83.0.478.37",
+      "Version": "Latest",
       "LogLevel": "Debug",
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Opera",
       "Browser": "Opera",
       "LogLevel": "Debug",
       "Arguments": [],
-      "ImplicitTimeoutInSecond": 30,
-      "DefaultWaitTimeInSecond": 30
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
     },
     {
+      "Id": "Safari",
       "Browser": "Safari",
       "LogLevel": "Debug",
       "ImplicitTimeoutInSecond": 30,

@@ -1,5 +1,4 @@
-﻿using Automation.Web.Core;
-using Automation.Web.NUnit;
+﻿using Automation.Web.NUnit;
 using NUnit.Framework;
 using WebTest.Google.Pages;
 
@@ -9,8 +8,9 @@ namespace WebTest.Google.Scenarios
     {
         private GooglePages pages;
 
-        public LoginScenario(BrowserType browserType) : base(browserType)
+        public LoginScenario(string browserId) : base(browserId)
         {
+            ScreenshotCondition = Automation.Web.Core.ScreenshotCondition.Always;
         }
 
         public override void SetUp()
@@ -23,8 +23,8 @@ namespace WebTest.Google.Scenarios
         public void LoginSuccess()
         {
             pages.HomePage.GoHere();
-            pages.HomePage.GotoLogin();
-            pages.LoginPage.Login("automation.web.test", "0123456789a@T");
+            //pages.HomePage.GotoLogin();
+            //pages.LoginPage.Login("automation.web.test", "0123456789a@T");
 
             Assert.True(pages.HomePage.IsDisplaying());
         }

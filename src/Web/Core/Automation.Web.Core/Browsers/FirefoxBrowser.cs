@@ -1,7 +1,6 @@
 ﻿using Automation.Web.Core.Config;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using WebDriverManager;
@@ -11,15 +10,21 @@ namespace Automation.Web.Core.Browsers
 {
     public class FirefoxBrowser : Browser
     {
-        public FirefoxBrowser(string jsonConfigFileName = null) 
+        public FirefoxBrowser(string jsonConfigFileName = null)
             : this(BrowserConfig.ReadFromConfig(BrowserType.Firefox, jsonConfigFileName)) { }
+
+        public FirefoxBrowser(string id, string jsonConfigFileName = null) :
+            this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
+        { }
 
         public FirefoxBrowser(BrowserConfig browserConfig) : base(BrowserType.Firefox)
         {
             if (browserConfig == null)
-                throw new ArgumentNullException(nameof(browserConfig));
+            {
+                browserConfig = new BrowserConfig { Browser = BrowserType.Firefox };
+            }
 
-            new DriverManager().SetUpDriver(new FirefoxConfig(), browserConfig.Version, browserConfig.Platform);
+            new DriverManager().SetUpDriver(new FirefoxConfig(), browserConfig.Version, browserConfig.OSPlatform);
             var driverOption = new FirefoxOptions();
 
             if (browserConfig.IsHeadless)
@@ -32,7 +37,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override RemoteWebDriver WebDriver { get; protected set; }
+        public override WebDriver WebDriver { get; protected set; }
         public override WebDriverWait Wait { get; protected set; }
     }
 }

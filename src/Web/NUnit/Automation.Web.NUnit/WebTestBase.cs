@@ -10,18 +10,19 @@ namespace Automation.Web.NUnit
     public class WebTestBase
     {
         protected IBrowser Browser;
-        protected readonly BrowserType BrowserType;
+        protected readonly string BrowserId;
         public virtual ScreenshotCondition ScreenshotCondition { get; set; } = ScreenshotCondition.Failure;
 
-        public WebTestBase(BrowserType browserType)
+        public WebTestBase(string browserId)
         {
-            BrowserType = browserType;
+            BrowserId = browserId;
         }
 
         [SetUp]
         public virtual void SetUp()
         {
-            Browser = BrowserFactory.CreateBrowser(BrowserType);
+            Browser = BrowserFactory.CreateBrowser(BrowserId);
+            Browser.StartScreenRecording();
         }
 
         [TearDown]
@@ -47,7 +48,10 @@ namespace Automation.Web.NUnit
                     }
                     break;
             }
-            
+
+            var recordVideoPath = Browser.StopScreenRecording();
+            TestContext.AddTestAttachment(recordVideoPath);
+
             Browser.Quit();
         }
 

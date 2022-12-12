@@ -11,11 +11,28 @@ namespace Automation.Web.Core
 
         public string TakeAndSaveScreenshot(string fileName = null)
         {
-            fileName = fileName ?? $"ScreenShoot_{Guid.NewGuid()}.png";
-            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"Screenshots");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            fileName = fileName ?? $"Screenshot_{Guid.NewGuid()}.png";
+            string fullPath = Path.Combine(folderPath, fileName);
             WebDriver.GetScreenshot().SaveAsFile(fullPath);
 
             return fullPath;
         }
+
+        public virtual void StartScreenRecording()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual string StopScreenRecording(string fileName = null)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

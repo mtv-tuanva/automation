@@ -1,4 +1,5 @@
 ﻿using Automation.Web.Core.Browsers;
+using Automation.Web.Core.Config;
 using System.ComponentModel;
 
 namespace Automation.Web.Core
@@ -21,14 +22,49 @@ namespace Automation.Web.Core
                 case BrowserType.InternetExplorer:
                     return new InternetExplorerBrowser(jsonConfigFileName);
 
-                case BrowserType.Opera:
-                    return new OperaBrowser(jsonConfigFileName);
-
                 case BrowserType.Safari:
                     return new SafariBrowser(jsonConfigFileName);
             }
 
             throw new InvalidEnumArgumentException($"The value of {nameof(browserType)} isn't supported.");
+        }
+
+        public static IBrowser CreateBrowser(string id, string jsonConfigFileName = "browsers.json")
+        {
+            var browserConfig = BrowserConfig.ReadFromConfig(id, jsonConfigFileName);
+
+            switch (browserConfig.Platform)
+            {
+
+                case PlatformType.Android:
+                    return new AndroidBrowser(browserConfig);
+                case PlatformType.IOS:
+                    return new IOSBrowser(browserConfig);
+                case PlatformType.Auto:
+                case PlatformType.X32:
+                case PlatformType.X64:
+                    switch (browserConfig.Browser)
+                    {
+                        case BrowserType.Chrome:
+                            return new ChromeBrowser(browserConfig);
+
+                        case BrowserType.Firefox:
+                            return new FirefoxBrowser(browserConfig);
+
+                        case BrowserType.Edge:
+                            return new EdgeBrowser(browserConfig);
+
+                        case BrowserType.InternetExplorer:
+                            return new InternetExplorerBrowser(browserConfig);
+
+                        case BrowserType.Safari:
+                            return new SafariBrowser(browserConfig);
+                    }
+
+                    throw new InvalidEnumArgumentException($"The value of {nameof(BrowserTypeName)} isn't supported.");
+            }
+
+            throw new InvalidEnumArgumentException($"The value of {nameof(BrowserTypeName)} isn't supported.");
         }
     }
 }

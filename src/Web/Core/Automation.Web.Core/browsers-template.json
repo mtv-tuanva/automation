@@ -1,7 +1,22 @@
 {
-  "ExecutableBrowsers": [ "Chrome", "Firefox" ],
+  "ExecutableBrowsers": [ "Chrome" ],
   "Browsers": [
     {
+      "Id": "Android",
+      "Browser": "Chrome",
+      "Platform": "Android",
+      "PlatformVersion": "11.0",
+      "DeviceName": "My Device1",
+      "AutomationName": "UIAutomator2",
+      "ServerUrl": "http://127.0.0.1:4723/wd/hubhttp://127.0.0.1:4723/wd/hub",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 30
+    },
+    {
+      "Id": "Chrome",
       "Browser": "Chrome",
       "Version": "Latest",
       "IsHeadless": false,
@@ -11,6 +26,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Firefox",
       "Browser": "Firefox",
       "Version": "Latest",
       "IsHeadless": false,
@@ -20,6 +36,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "InternetExplorer",
       "Browser": "InternetExplorer",
       "Platform": "X32",
       "LogLevel": "Debug",
@@ -28,6 +45,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Edge",
       "Browser": "Edge",
       "Version": "Latest",
       "LogLevel": "Debug",
@@ -36,6 +54,7 @@
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Opera",
       "Browser": "Opera",
       "LogLevel": "Debug",
       "Arguments": [],
@@ -43,6 +62,7 @@
       "DefaultWaitTimeInSecond": 10
     },
     {
+      "Id": "Safari",
       "Browser": "Safari",
       "LogLevel": "Debug",
       "ImplicitTimeoutInSecond": 30,

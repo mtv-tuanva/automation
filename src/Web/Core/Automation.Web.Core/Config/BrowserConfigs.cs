@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Converters;
 using System;
 using System.IO;
-using System.Text.Json.Serialization;
 
 namespace Automation.Web.Core.Config
 {
@@ -10,8 +8,7 @@ namespace Automation.Web.Core.Config
     {
         public const string DefaultConfigurationFileName = "browsers.json";
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public BrowserType[] ExecutableBrowsers { get; set; }
+        public string[] ExecutableBrowsers { get; set; }
 
         public BrowserConfig[] Browsers { get; set; }
 

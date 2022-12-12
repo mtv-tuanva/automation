@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Html5;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 
 namespace Automation.Web.Core
@@ -12,7 +10,7 @@ namespace Automation.Web.Core
         /// </summary>
         BrowserType BrowserType { get; }
 
-        RemoteWebDriver WebDriver { get; }
+        WebDriver WebDriver { get; }
 
         WebDriverWait Wait { get; }
 
@@ -27,7 +25,7 @@ namespace Automation.Web.Core
         /// Gets an object allowing the user to examing the logs for this driver instance.
         /// </summary>
         ILogs Logs { get; }
- 
+
         /// <summary>
         /// Gets an object allowing the user to manipulate the currently-focused browser window.
         /// </summary>
@@ -38,35 +36,10 @@ namespace Automation.Web.Core
         IWindow Window { get; }
 
         /// <summary>
-        /// Gets a value indicating whether web storage is supported for this browser.
-        /// </summary>
-        bool HasWebStorage { get; }
-        
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.IWebStorage object for managing web storage.
-        /// </summary>
-        IWebStorage WebStorage { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether manipulating geolocation is supported for this browser
-        /// </summary>
-        bool HasLocationContext { get; }
-
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.IApplicationCache object for managing application cache
-        /// </summary>
-        IApplicationCache ApplicationCache { get; }
-
-        /// <summary>
         /// Gets or sets the URL the browser is currently displaying.
         /// </summary>
         string Url { get; set; }
-   
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.ILocationContext object for managing browser location.
-        /// </summary>
-        ILocationContext LocationContext { get; }
- 
+
         /// <summary>
         /// Gets or sets the OpenQA.Selenium.IFileDetector responsible for detecting sequences of keystrokes representing file paths and names.
         /// </summary>
@@ -76,12 +49,12 @@ namespace Automation.Web.Core
         /// Gets the OpenQA.Selenium.Remote.RemoteWebDriver.SessionId for the current session of this driver.
         /// </summary>
         SessionId SessionId { get; }
-    
+
         /// <summary>
         /// Closes the Browser
         /// </summary>
         void Close();
-    
+
         /// <summary>
         /// Close the Browser and Dispose of WebDriver
         /// </summary>

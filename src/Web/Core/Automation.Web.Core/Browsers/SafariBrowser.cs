@@ -1,6 +1,5 @@
 ﻿using Automation.Web.Core.Config;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -9,9 +8,14 @@ namespace Automation.Web.Core.Browsers
 {
     class SafariBrowser : Browser
     {
-        public SafariBrowser(string jsonConfigFileName = null) : 
-            this(BrowserConfig.ReadFromConfig(BrowserType.Safari, jsonConfigFileName)) { }
-        
+        public SafariBrowser(string jsonConfigFileName = null) :
+            this(BrowserConfig.ReadFromConfig(BrowserType.Safari, jsonConfigFileName))
+        { }
+
+        public SafariBrowser(string id, string jsonConfigFileName = null) :
+            this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
+        { }
+
         public SafariBrowser(BrowserConfig browserConfig) : base(BrowserType.Safari)
         {
             //No need to setup safari web driver
@@ -30,7 +34,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(waitTimeInSecond));
         }
 
-        public override RemoteWebDriver WebDriver { get; protected set; }
+        public override WebDriver WebDriver { get; protected set; }
         public override WebDriverWait Wait { get; protected set; }
     }
 }
