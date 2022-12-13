@@ -14,7 +14,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public AndroidBrowser(BrowserConfig browserConfig) : base(browserConfig.Browser)
+        public AndroidBrowser(BrowserConfig browserConfig) : base(browserConfig.Browser, browserConfig.Platform)
         {
             browserConfig.AutomationName = browserConfig.AutomationName ?? "UIAutomator2";
             browserConfig.DefaultWaitTimeInSecond = browserConfig.DefaultWaitTimeInSecond > 0 ? DefaultWaitTimeInSecond : browserConfig.DefaultWaitTimeInSecond;
@@ -32,16 +32,16 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override void StartScreenRecording()
+        public override void StartScreenRecordingInternal()
         {
-            var str = ((AndroidDriver)WebDriver).StartRecordingScreen(
+            ((AndroidDriver)WebDriver).StartRecordingScreen(
                 AndroidStartScreenRecordingOptions.GetAndroidStartScreenRecordingOptions()
                     .WithTimeLimit(TimeSpan.FromSeconds(1800))
                     .WithBitRate(500000)
                     .WithVideoSize("720x1280"));
         }
 
-        public override string StopScreenRecording(string fileName = null)
+        public override string StopScreenRecordingInternal(string fileName = null)
         {
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"VideoRecords");
             if (!Directory.Exists(folderPath))

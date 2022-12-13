@@ -17,7 +17,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public InternetExplorerBrowser(BrowserConfig browserConfig) : base(BrowserType.InternetExplorer)
+        public InternetExplorerBrowser(BrowserConfig browserConfig) : base(BrowserType.InternetExplorer, browserConfig.Platform)
         {
             if (browserConfig == null)
             {

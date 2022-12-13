@@ -16,7 +16,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public SafariBrowser(BrowserConfig browserConfig) : base(BrowserType.Safari)
+        public SafariBrowser(BrowserConfig browserConfig) : base(BrowserType.Safari, browserConfig.Platform)
         {
             //No need to setup safari web driver
             var driverOption = new SafariOptions();

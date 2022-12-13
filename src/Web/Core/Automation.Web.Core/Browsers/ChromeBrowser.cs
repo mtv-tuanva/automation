@@ -19,7 +19,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public ChromeBrowser(BrowserConfig browserConfig) : base(BrowserType.Chrome)
+        public ChromeBrowser(BrowserConfig browserConfig) : base(BrowserType.Chrome, browserConfig.Platform)
         {
             if (browserConfig == null)
             {

@@ -19,7 +19,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public EdgeBrowser(BrowserConfig browserConfig) : base(BrowserType.Edge)
+        public EdgeBrowser(BrowserConfig browserConfig) : base(BrowserType.Edge, browserConfig.Platform)
         {
             if (browserConfig == null)
             {

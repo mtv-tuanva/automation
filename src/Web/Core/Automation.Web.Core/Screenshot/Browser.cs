@@ -24,15 +24,14 @@ namespace Automation.Web.Core
             return fullPath;
         }
 
-        public virtual void StartScreenRecording()
+        public virtual void StartScreenRecordingInternal()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Add nuget package Automation.Web.Core to use this function in Windows");
         }
 
-        public virtual string StopScreenRecording(string fileName = null)
+        public virtual string StopScreenRecordingInternal(string fileName = null)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Add nuget package Automation.Web.Core to use this function in Windows");
         }
-
     }
 }

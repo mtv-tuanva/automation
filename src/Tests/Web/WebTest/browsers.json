@@ -1,5 +1,5 @@
 {
-  "ExecutableBrowsers": [ "Android" ],
+  "ExecutableBrowsers": [ "Chrome", "Android" ],
   "Browsers": [
     {
       "Id": "Android",

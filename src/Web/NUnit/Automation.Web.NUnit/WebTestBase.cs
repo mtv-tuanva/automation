@@ -22,7 +22,6 @@ namespace Automation.Web.NUnit
         public virtual void SetUp()
         {
             Browser = BrowserFactory.CreateBrowser(BrowserId);
-            Browser.StartScreenRecording();
         }
 
         [TearDown]
@@ -48,9 +47,6 @@ namespace Automation.Web.NUnit
                     }
                     break;
             }
-
-            var recordVideoPath = Browser.StopScreenRecording();
-            TestContext.AddTestAttachment(recordVideoPath);
 
             Browser.Quit();
         }

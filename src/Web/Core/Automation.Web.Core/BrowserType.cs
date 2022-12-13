@@ -12,9 +12,10 @@
 
     public enum PlatformType
     {
-        Auto,
-        X32,
-        X64,
+        Any,
+        Win32,
+        Win64,
+        Mac,
         Android,
         IOS
     }

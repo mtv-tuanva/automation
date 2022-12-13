@@ -40,9 +40,9 @@ namespace Automation.Web.Core
                     return new AndroidBrowser(browserConfig);
                 case PlatformType.IOS:
                     return new IOSBrowser(browserConfig);
-                case PlatformType.Auto:
-                case PlatformType.X32:
-                case PlatformType.X64:
+                case PlatformType.Any:
+                case PlatformType.Win32:
+                case PlatformType.Win64:
                     switch (browserConfig.Browser)
                     {
                         case BrowserType.Chrome:

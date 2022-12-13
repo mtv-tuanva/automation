@@ -17,7 +17,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public FirefoxBrowser(BrowserConfig browserConfig) : base(BrowserType.Firefox)
+        public FirefoxBrowser(BrowserConfig browserConfig) : base(BrowserType.Firefox, browserConfig.Platform)
         {
             if (browserConfig == null)
             {

@@ -20,13 +20,13 @@ namespace Automation.Web.Core
         /// <summary>
         /// Start screen recording 
         /// </summary>
-        void StartScreenRecording();
+        void StartScreenRecordingInternal();
 
         /// <summary>
         /// Stop screen recording and save it to the path
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>The full path of record file.</returns>
-        string StopScreenRecording(string fileName = null);
+        string StopScreenRecordingInternal(string fileName = null);
     }
 }

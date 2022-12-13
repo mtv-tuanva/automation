@@ -34,7 +34,7 @@ namespace Automation.Web.Core.Config
         /// Flatform such as Android, IOS, X32 or X64 or Auto. Default value is `Auto`
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public PlatformType Platform { get; set; } = PlatformType.Auto;
+        public PlatformType Platform { get; set; } = PlatformType.Any;
 
         /// <summary>
         /// iOS/Android version
@@ -65,7 +65,7 @@ namespace Automation.Web.Core.Config
         /// X32 or X64 or Auto. Default value is `Auto`
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public Architecture OSPlatform => Platform == PlatformType.X32 ? Architecture.X32 : Platform == PlatformType.X64 ? Architecture.X64 : Architecture.Auto;
+        public Architecture OSPlatform => Platform == PlatformType.Win32 ? Architecture.X32 : Platform == PlatformType.Win64 ? Architecture.X64 : Architecture.Auto;
 
         /// <summary>
         /// Specify that the browser is going to be run as headless or not. Notice that only Chrome or Firefox supports headless type.

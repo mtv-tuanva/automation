@@ -1,14 +1,17 @@
 ﻿using Automation.Web.Core.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace Automation.Web.Core
 {
     public abstract partial class Browser : IBrowser
     {
-        protected Browser(BrowserType browserType)
+        protected Browser(BrowserType browserType, PlatformType platformType)
         {
             BrowserType = browserType;
+            Platform = platformType;
+            Recorders = new Queue<object>();
         }
 
         ~Browser()
@@ -19,6 +22,10 @@ namespace Automation.Web.Core
         protected const uint DefaultWaitTimeInSecond = 30;
 
         public BrowserType BrowserType { get; }
+
+        public PlatformType Platform { get; }
+
+        public Queue<object> Recorders { get; }
 
         public abstract WebDriver WebDriver { get; protected set; }
 

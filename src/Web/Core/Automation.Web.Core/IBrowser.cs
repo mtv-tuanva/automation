@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace Automation.Web.Core
 {
@@ -9,6 +10,11 @@ namespace Automation.Web.Core
         /// Indicate the browser is Chrome or Firefox or IE or Safari...
         /// </summary>
         BrowserType BrowserType { get; }
+
+        /// <summary>
+        /// Indicate the OS platform such as Win32, Win64, Android, IOS, Mac
+        /// </summary>
+        PlatformType Platform { get; }
 
         WebDriver WebDriver { get; }
 
@@ -71,5 +77,10 @@ namespace Automation.Web.Core
         /// <param name="fileName">The file name of </param>
         /// <returns></returns>
         string GetDownloadFilePath(string fileName);
+
+        /// <summary>
+        /// Store video record instances
+        /// </summary>
+        Queue<object> Recorders { get; }
     }
 }

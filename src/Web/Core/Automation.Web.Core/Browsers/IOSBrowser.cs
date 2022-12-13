@@ -15,7 +15,7 @@ namespace Automation.Web.Core.Browsers
             this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
         { }
 
-        public IOSBrowser(BrowserConfig browserConfig) : base(browserConfig.Browser)
+        public IOSBrowser(BrowserConfig browserConfig) : base(browserConfig.Browser, browserConfig.Platform)
         {
             browserConfig.AutomationName = browserConfig.AutomationName ?? "XCUITest";
             browserConfig.DefaultWaitTimeInSecond = browserConfig.DefaultWaitTimeInSecond > 0 ? DefaultWaitTimeInSecond : browserConfig.DefaultWaitTimeInSecond;
@@ -33,7 +33,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override void StartScreenRecording()
+        public override void StartScreenRecordingInternal()
         {
             ((IOSDriver)WebDriver).StartRecordingScreen(
                 AndroidStartScreenRecordingOptions.GetAndroidStartScreenRecordingOptions()
@@ -42,7 +42,7 @@ namespace Automation.Web.Core.Browsers
                     .WithVideoSize("720x1280"));
         }
 
-        public override string StopScreenRecording(string fileName = null)
+        public override string StopScreenRecordingInternal(string fileName = null)
         {
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"VideoRecords");
             if (!Directory.Exists(folderPath))
