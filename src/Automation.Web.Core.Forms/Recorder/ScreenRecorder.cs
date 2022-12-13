@@ -30,7 +30,7 @@ namespace Automation.Web.Core.Forms.Recorder
             };
 
             // Create video stream
-            videoStream = writer.AddUncompressedVideoStream(width, height);
+            videoStream = writer.AddMJpegWpfVideoStream(width, height);
 
             // Set only name. Other properties were when creating stream, 
             // either explicitly by arguments or implicitly by the encoder used
