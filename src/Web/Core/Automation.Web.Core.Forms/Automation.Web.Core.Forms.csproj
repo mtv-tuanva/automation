@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web\Core\Automation.Web.Core\Automation.Web.Core.csproj" />
+    <ProjectReference Include="..\Automation.Web.Core\Automation.Web.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

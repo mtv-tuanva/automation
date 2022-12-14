@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnit", "NUnit", "{186200CF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation.Web.NUnit", "Web\NUnit\Automation.Web.NUnit\Automation.Web.NUnit.csproj", "{FA0F8899-2AB5-40F5-8695-22E01FC2410A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Web.Core.Forms", "Automation.Web.Core.Forms\Automation.Web.Core.Forms.csproj", "{24A66DB6-4EA2-412C-B238-813199D88210}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Web.Core.Forms", "Web\Core\Automation.Web.Core.Forms\Automation.Web.Core.Forms.csproj", "{24A66DB6-4EA2-412C-B238-813199D88210}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
