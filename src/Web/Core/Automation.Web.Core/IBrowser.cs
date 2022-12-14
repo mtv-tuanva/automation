@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 
 namespace Automation.Web.Core
 {
-    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole, IBrowserAction, IBrowserFindElement, IBrowserScreenshot, IBrowserTab
+    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole, IBrowserAction, IBrowserFindElement, IBrowserScreenshot, IBrowserTab, IDisposable
     {
         /// <summary>
         /// Indicate the browser is Chrome or Firefox or IE or Safari...

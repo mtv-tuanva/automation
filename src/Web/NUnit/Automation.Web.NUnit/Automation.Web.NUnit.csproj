@@ -13,11 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="browsers-template.json" />
+    <None Remove="browsers.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="browsers-template.json">
+    <Content Include="browsers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

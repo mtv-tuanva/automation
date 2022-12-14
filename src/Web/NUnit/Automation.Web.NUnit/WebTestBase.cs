@@ -48,7 +48,7 @@ namespace Automation.Web.NUnit
                     break;
             }
 
-            Browser.Quit();
+            Browser.Dispose();
         }
 
         public string TakeScreenshot(string fileName = null, bool autoAttach = true)

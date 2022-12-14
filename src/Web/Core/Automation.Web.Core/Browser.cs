@@ -7,6 +7,7 @@ namespace Automation.Web.Core
 {
     public abstract partial class Browser : IBrowser
     {
+        private bool _isDisposed;
         protected Browser(BrowserType browserType, PlatformType platformType)
         {
             BrowserType = browserType;
@@ -16,7 +17,7 @@ namespace Automation.Web.Core
 
         ~Browser()
         {
-            WebDriver.Quit();
+            Dispose();
         }
 
         protected const uint DefaultWaitTimeInSecond = 30;
@@ -83,6 +84,21 @@ namespace Automation.Web.Core
                 default:
                     return By.CssSelector(selector);
             }
+        }
+
+        /// <summary>
+        /// Disposes the Selenium web driver (closing the browser) after the Scenario completed
+        /// </summary>
+        public void Dispose()
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            WebDriver?.Quit();
+
+            _isDisposed = true;
         }
     }
 }
