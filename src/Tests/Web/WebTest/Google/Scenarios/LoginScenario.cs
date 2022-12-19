@@ -5,7 +5,7 @@ using WebTest.Google.Pages;
 
 namespace WebTest.Google.Scenarios
 {
-    public class LoginScenario : WebTestBase
+    public class LoginScenario : NonParallelizableWebTestBase
     {
         private GooglePages pages;
 

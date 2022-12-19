@@ -2,18 +2,49 @@
 using Automation.Web.Core.Config;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using System;
 
 namespace Automation.Web.NUnit
 {
-    [TestFixtureSource(typeof(ExecutableBrowserConfig))]
+
+    /// <summary>
+    /// Identifies the browser source used to provide test fixture instances for a test class.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+    public class BrowserSourceAttribute : TestFixtureSourceAttribute
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceType">A descendant of ExecutableBrowserSourceConfig type</param>
+        public BrowserSourceAttribute(Type sourceType) : base(sourceType)
+        {
+        }
+    }
+
+    public class WebTestBase : ParallelizableWebTestBase
+    {
+        public WebTestBase(string browserId) : base(browserId)
+        {
+        }
+    }
+
     [Parallelizable(ParallelScope.Self)]
-    public class WebTestBase
+    public class ParallelizableWebTestBase : NonParallelizableWebTestBase
+    {
+        public ParallelizableWebTestBase(string browserId) : base(browserId)
+        {
+        }
+    }
+
+    [BrowserSource(typeof(ExecutableBrowserSourceConfig))]
+    public class NonParallelizableWebTestBase
     {
         protected IBrowser Browser;
         protected readonly string BrowserId;
         public virtual ScreenshotCondition ScreenshotCondition { get; set; } = ScreenshotCondition.Failure;
 
-        public WebTestBase(string browserId)
+        public NonParallelizableWebTestBase(string browserId)
         {
             BrowserId = browserId;
         }

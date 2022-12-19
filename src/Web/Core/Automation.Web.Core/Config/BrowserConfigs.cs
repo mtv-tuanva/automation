@@ -15,9 +15,22 @@ namespace Automation.Web.Core.Config
         /// <summary>
         /// Read the BrowserConfigs from a json file
         /// </summary>
-        /// <param name="jsonConfigFileName">The json config file of browser.</param>
+        /// <param name="jsonConfigFileName">The json config file of browser. It should be in the same folder with the execution file</param>
         /// <returns>BrowserConfigs</returns>
         public static BrowserConfigs ReadFromConfig(string jsonConfigFileName = null)
+        {
+            var config = ReadConfiguratonFile(jsonConfigFileName);
+
+            return config.Get<BrowserConfigs>();
+        }
+
+        /// <summary>
+        /// Read the BrowserConfigs from a json file
+        /// </summary>
+        /// <param name="jsonConfigFileName">The json config file of browser. It should be in the same folder with the execution file</param>
+        /// <returns>An IConfiguration value</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static IConfiguration ReadConfiguratonFile(string jsonConfigFileName = null)
         {
             if (string.IsNullOrEmpty(jsonConfigFileName))
             {
@@ -35,7 +48,7 @@ namespace Automation.Web.Core.Config
              .AddEnvironmentVariables()
              .Build();
 
-            return config.Get<BrowserConfigs>();
+            return config;
         }
     }
 }
