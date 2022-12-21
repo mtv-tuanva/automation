@@ -1,6 +1,18 @@
 # Introduction 
 This is the web automation test library that can help use early to create an automation web test on many browsers and many OS without setup the corresponding webdriver such as ChromeDriver, FirefoxDriver or IEDriver.
 This library is still developing, so please keep looking. Thanks!
+
+# Releate notes
+1. v1.x.x -> v2.0.0
+- Migrate Automation.Web.Core to v2.0.0
+- Added 2 more test class base:
+ + NonParallelizableWebTestBase
+ + ParallelizableWebTestBase
+- Add new attribute `BrowserSourceAttribute`. It is used to configure your browser source which decides all browsers will be used to execute on the target Test Class.
+- Support Specflow:
+    + Added class `BrowserInjectionFeature` to extend your generated class xxx.feature.cs to inject multiple browser into the same feature. If will help you to execute multiple browsers using the same Feature/scenario
+    + Added class `BrowserInjectionHook`. It is used to inject the IBrowser into the scenario context, and setting auto take screenshot per steps, or auto take the video record per scenario.
+
 # Getting Started
 1. Create your test project.
 2. Installation the nuget package: `Automation.Web.NUnit`
@@ -14,6 +26,21 @@ Notice that
 
   "Browsers": [
     {
+      "Id": "Android",
+      "Browser": "Chrome",
+      "Platform": "Android",
+      "PlatformVersion": "11.0",
+      "DeviceName": "Pixel5",
+      "AutomationName": "UIAutomator2",
+      "ServerUrl": "http://127.0.0.1:4723",
+      "IsHeadless": false,
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 30,
+      "DefaultWaitTimeInSecond": 3000
+    },
+    {
+      "Id": "Chrome",
       "Browser": "Chrome",
       "Version": "Latest",
       "IsHeadless": false,
@@ -23,6 +50,7 @@ Notice that
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Firefox",
       "Browser": "Firefox",
       "Version": "Latest",
       "IsHeadless": false,
@@ -32,6 +60,7 @@ Notice that
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "InternetExplorer",
       "Browser": "InternetExplorer",
       "Platform": "X32",
       "LogLevel": "Debug",
@@ -40,21 +69,16 @@ Notice that
       "DefaultWaitTimeInSecond": 30
     },
     {
+      "Id": "Edge",
       "Browser": "Edge",
-      "Version": "83.0.478.37",
+      "Version": "Latest",
       "LogLevel": "Debug",
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
       "DefaultWaitTimeInSecond": 30
     },
     {
-      "Browser": "Opera",
-      "LogLevel": "Debug",
-      "Arguments": [],
-      "ImplicitTimeoutInSecond": 30,
-      "DefaultWaitTimeInSecond": 30
-    },
-    {
+      "Id": "Safari",
       "Browser": "Safari",
       "LogLevel": "Debug",
       "ImplicitTimeoutInSecond": 30,
@@ -182,6 +206,18 @@ public class LoginScenario : WebTestBase
 ```
 
 5. Run your test cases and see the magic^^
+
+6. Browser configuration details
+6.1 Desktop web testing
+- Currently, we support Chrome, Firefox, Safari, Edge, InternetExplorer.
+
+6.2 Mobile web testing
+- It's required to have an Appium server to run the Mobile web testing. So, please don't forget to set the `ServerUrl` to the Appium server such as http://127.0.0.1:4723.
+
+6.3 Execute multiple browsers with the same Test case
+- You can configure a list of browsers that you wanna run with your test case using the `ExecutableBrowsers` in above browser.json.
+
+7. Specflow support
 
 # Contribute
 Will update later.

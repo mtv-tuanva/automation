@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <IsPackable>false</IsPackable>
+    
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +22,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Web\Core\Automation.Web.Core.Forms\Automation.Web.Core.Forms.csproj" />
     <ProjectReference Include="..\..\..\Web\NUnit\Automation.Web.NUnit\Automation.Web.NUnit.csproj" />
   </ItemGroup>
 
