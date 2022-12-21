@@ -5,6 +5,10 @@ using TechTalk.SpecFlow;
 
 namespace Automation.Web.NUnit.Specflow.Feature
 {
+    /// <summary>
+    /// The BrowserInjectionFeature class is used to extend your generated class xxx.feature.cs to inject multiple browser into the same feature.
+    /// If will help you to execute multiple browsers using the same Feature/scenario
+    /// </summary>
     public class BrowserInjectionFeature : IDisposable
     {
         private readonly string _browserId;
@@ -16,6 +20,9 @@ namespace Automation.Web.NUnit.Specflow.Feature
             _browserId = browserID;
         }
 
+        /// <summary>
+        /// Inject browrser & browserId into FeatureContext when setup the test
+        /// </summary>
         [SetUp]
         public virtual void SetUp()
         {

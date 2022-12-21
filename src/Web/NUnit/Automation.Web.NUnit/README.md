@@ -1,6 +1,18 @@
 # Introduction 
 This is the web automation test library that can help use early to create an automation web test on many browsers and many OS without setup the corresponding webdriver such as ChromeDriver, FirefoxDriver or IEDriver.
 This library is still developing, so please keep looking. Thanks!
+
+# Releate notes
+1. v1.x.x -> v2.0.0
+- Migrate Automation.Web.Core to v2.0.0
+- Added 2 more test class base:
+ + NonParallelizableWebTestBase
+ + ParallelizableWebTestBase
+- Add new attribute `BrowserSourceAttribute`. It is used to configure your browser source which decides all browsers will be used to execute on the target Test Class.
+- Support Specflow:
+    + Added class `BrowserInjectionFeature` to extend your generated class xxx.feature.cs to inject multiple browser into the same feature. If will help you to execute multiple browsers using the same Feature/scenario
+    + Added class `BrowserInjectionHook`. It is used to inject the IBrowser into the scenario context, and setting auto take screenshot per steps, or auto take the video record per scenario.
+
 # Getting Started
 1. Create your test project.
 2. Installation the nuget package: `Automation.Web.NUnit`

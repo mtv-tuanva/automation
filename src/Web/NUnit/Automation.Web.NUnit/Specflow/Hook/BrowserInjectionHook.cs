@@ -6,6 +6,9 @@ using TechTalk.SpecFlow.Infrastructure;
 
 namespace Automation.Web.NUnit.Specflow.Hook
 {
+    /// <summary>
+    /// Using BrowserInjectionHook to inject IBrowser into the scenario context, and setting auto take screenshot per steps, or auto take the video record per scenario.
+    /// </summary>
     [Binding]
     public class BrowserInjectionHook
     {

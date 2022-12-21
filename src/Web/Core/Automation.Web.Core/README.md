@@ -1,6 +1,16 @@
 # Introduction 
 This is the web automation test library that can help use early to create an automation web test on many browsers and many OS without setup the corresponding webdriver such as ChromeDriver, FirefoxDriver or IEDriver.
 This library is still developing, so please keep looking. Thanks!
+
+# Releate notes
+1. v1.x.x -> v2.0.0
+- Migrate to Selenium.WebDriver 4.7.x
+- Integrate with Appium.WebDriver 5.x.x
+- Support mobile web browsers testing on Android/iOS
+- Support screen (video) recording function:
+    + Added the StartScreenRecording() function into IBrowser
+    + Added the StopScreenRecording() function into IBrowser
+
 # Getting Started
 1. Create your test project.
 2. Install any unit test framework that you like. We will use NUnit in this tutorial.
@@ -120,7 +130,8 @@ This configuration is based on your browser version & your expection browser beh
 7.2 Mobile web testing
 - It's required to have an Appium server to run the Mobile web testing. So, please don't forget to set the `ServerUrl` to the Appium server such as http://127.0.0.1:4723.
 
-7.3 Browser APIs
+# APIs document
+1. IBrowser APIs
  * The IBrowser is wrapper almost APIs from IWebDriver
  * Highlight APIs:
  - IBrowser.TakeAndSaveScreenshot(fileName) : take screenshot and save to local disk then return the file path.
