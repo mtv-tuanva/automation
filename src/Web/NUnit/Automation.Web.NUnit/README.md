@@ -205,5 +205,7 @@ public class LoginScenario : WebTestBase
 6.3 Execute multiple browsers with the same Test case
 - You can configure a list of browsers that you wanna run with your test case using the `ExecutableBrowsers` in above browser.json.
 
+7. Specflow support
+
 # Contribute
 Will update later.

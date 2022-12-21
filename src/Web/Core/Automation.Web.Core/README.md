@@ -120,5 +120,12 @@ This configuration is based on your browser version & your expection browser beh
 7.2 Mobile web testing
 - It's required to have an Appium server to run the Mobile web testing. So, please don't forget to set the `ServerUrl` to the Appium server such as http://127.0.0.1:4723.
 
+7.3 Browser APIs
+ * The IBrowser is wrapper almost APIs from IWebDriver
+ * Highlight APIs:
+ - IBrowser.TakeAndSaveScreenshot(fileName) : take screenshot and save to local disk then return the file path.
+ - IBrowser.StartScreenRecording() : start screen recording video. This api supports mobile web, and windows web only.
+ - IBrowser.StopScreenRecording() : stop screen recording video and return the file path. This api supports mobile web, and windows web only.
+
 # Contribute
 Will update later.
