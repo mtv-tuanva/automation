@@ -27,12 +27,12 @@ namespace Automation.Web.Core
 
         public virtual void StartScreenRecording()
         {
-            GetBrowserExtensionType()?.GetMethod("StartScreenRecording").Invoke(null, new object[] { this });
+            GetBrowserExtensionType()?.GetMethod("WindowsOsStartScreenRecording").Invoke(null, new object[] { this });
         }
 
         public virtual string StopScreenRecording()
         {
-            return GetBrowserExtensionType()?.GetMethod("StopScreenRecording").Invoke(null, new object[] { this }) as string;
+            return GetBrowserExtensionType()?.GetMethod("WindowsOsStopScreenRecording").Invoke(null, new object[] { this }) as string;
         }
 
         protected Type GetBrowserExtensionType()
