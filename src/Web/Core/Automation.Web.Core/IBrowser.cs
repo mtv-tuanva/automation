@@ -1,18 +1,23 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Html5;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 
 namespace Automation.Web.Core
 {
-    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole, IBrowserAction, IBrowserFindElement, IBrowserScreenshot, IBrowserTab
+    public interface IBrowser : IBrowserWait, IBrowserScript, IBrowserConsole, IBrowserAction, IBrowserFindElement, IBrowserScreenshot, IBrowserTab, IDisposable
     {
         /// <summary>
         /// Indicate the browser is Chrome or Firefox or IE or Safari...
         /// </summary>
         BrowserType BrowserType { get; }
 
-        RemoteWebDriver WebDriver { get; }
+        /// <summary>
+        /// Indicate the OS platform such as Win32, Win64, Android, IOS, Mac
+        /// </summary>
+        PlatformType Platform { get; }
+
+        WebDriver WebDriver { get; }
 
         WebDriverWait Wait { get; }
 
@@ -27,7 +32,7 @@ namespace Automation.Web.Core
         /// Gets an object allowing the user to examing the logs for this driver instance.
         /// </summary>
         ILogs Logs { get; }
- 
+
         /// <summary>
         /// Gets an object allowing the user to manipulate the currently-focused browser window.
         /// </summary>
@@ -38,35 +43,10 @@ namespace Automation.Web.Core
         IWindow Window { get; }
 
         /// <summary>
-        /// Gets a value indicating whether web storage is supported for this browser.
-        /// </summary>
-        bool HasWebStorage { get; }
-        
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.IWebStorage object for managing web storage.
-        /// </summary>
-        IWebStorage WebStorage { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether manipulating geolocation is supported for this browser
-        /// </summary>
-        bool HasLocationContext { get; }
-
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.IApplicationCache object for managing application cache
-        /// </summary>
-        IApplicationCache ApplicationCache { get; }
-
-        /// <summary>
         /// Gets or sets the URL the browser is currently displaying.
         /// </summary>
         string Url { get; set; }
-   
-        /// <summary>
-        /// Gets an OpenQA.Selenium.Html5.ILocationContext object for managing browser location.
-        /// </summary>
-        ILocationContext LocationContext { get; }
- 
+
         /// <summary>
         /// Gets or sets the OpenQA.Selenium.IFileDetector responsible for detecting sequences of keystrokes representing file paths and names.
         /// </summary>
@@ -76,12 +56,12 @@ namespace Automation.Web.Core
         /// Gets the OpenQA.Selenium.Remote.RemoteWebDriver.SessionId for the current session of this driver.
         /// </summary>
         SessionId SessionId { get; }
-    
+
         /// <summary>
         /// Closes the Browser
         /// </summary>
         void Close();
-    
+
         /// <summary>
         /// Close the Browser and Dispose of WebDriver
         /// </summary>
@@ -98,5 +78,10 @@ namespace Automation.Web.Core
         /// <param name="fileName">The file name of </param>
         /// <returns></returns>
         string GetDownloadFilePath(string fileName);
+
+        /// <summary>
+        /// Store video record instances
+        /// </summary>
+        Queue<object> Recorders { get; }
     }
 }

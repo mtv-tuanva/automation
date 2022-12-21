@@ -1,19 +1,19 @@
 {
-  "ExecutableBrowsers": [ "Chrome", "Edge" ],
+  "ExecutableBrowsers": [ "Chrome" ],
   "Browsers": [
     {
       "Id": "Android",
       "Browser": "Chrome",
       "Platform": "Android",
       "PlatformVersion": "11.0",
-      "DeviceName": "Pixel5",
+      "DeviceName": "My Device1",
       "AutomationName": "UIAutomator2",
-      "ServerUrl": "http://127.0.0.1:4723",
+      "ServerUrl": "http://127.0.0.1:4723/wd/hubhttp://127.0.0.1:4723/wd/hub",
       "IsHeadless": false,
       "LogLevel": "Debug",
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
-      "DefaultWaitTimeInSecond": 3000
+      "DefaultWaitTimeInSecond": 30
     },
     {
       "Id": "Chrome",
@@ -52,6 +52,14 @@
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
       "DefaultWaitTimeInSecond": 30
+    },
+    {
+      "Id": "Opera",
+      "Browser": "Opera",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
     },
     {
       "Id": "Safari",

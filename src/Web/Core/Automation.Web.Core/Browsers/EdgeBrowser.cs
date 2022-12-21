@@ -1,7 +1,6 @@
 ﻿using Automation.Web.Core.Config;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.IO;
@@ -13,17 +12,23 @@ namespace Automation.Web.Core.Browsers
     //Download the latest Edge from https://www.microsoft.com/en-us/edge
     public class EdgeBrowser : Browser
     {
-        public EdgeBrowser(string jsonConfigFileName = null) 
+        public EdgeBrowser(string jsonConfigFileName = null)
             : this(BrowserConfig.ReadFromConfig(BrowserType.Edge, jsonConfigFileName)) { }
 
-        public EdgeBrowser(BrowserConfig browserConfig) : base(BrowserType.Edge)
+        public EdgeBrowser(string id, string jsonConfigFileName = null) :
+            this(BrowserConfig.ReadFromConfig(id, jsonConfigFileName))
+        { }
+
+        public EdgeBrowser(BrowserConfig browserConfig) : base(BrowserType.Edge, browserConfig.Platform)
         {
             if (browserConfig == null)
-                throw new ArgumentNullException(nameof(browserConfig));
+            {
+                browserConfig = new BrowserConfig { Browser = BrowserType.Edge };
+            }
 
             new DriverManager().SetUpDriver(new EdgeConfig()
                 , version: browserConfig.Version
-                , architecture: browserConfig.Platform
+                , architecture: browserConfig.OSPlatform
                 );
             var driverOption = new EdgeOptions();
 
@@ -46,7 +51,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override RemoteWebDriver WebDriver { get; protected set; }
+        public override WebDriver WebDriver { get; protected set; }
         public override WebDriverWait Wait { get; protected set; }
 
         private void TryToSetupmWebDriver(EdgeOptions driverOption, Exception thrownException)

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json.Converters;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -21,9 +20,41 @@ namespace Automation.Web.Core.Config
 
         /// <summary>
         /// Browser type, that is specify the browser is chrome or firefox or IE or Safari...
+        /// "Id": "Android",
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public BrowserType Browser { get; set; }
+
+        /// <summary>
+        /// Id of a browser config
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Flatform such as Android, IOS, X32 or X64 or Auto. Default value is `Auto`
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PlatformType Platform { get; set; } = PlatformType.Any;
+
+        /// <summary>
+        /// iOS/Android version
+        /// </summary>
+        public string PlatformVersion { get; set; }
+
+        /// <summary>
+        /// Device name
+        /// </summary>
+        public string DeviceName { get; set; }
+
+        /// <summary>
+        /// AutomationName such as UIAutomator2 for Android, XCUITest for iOS
+        /// </summary>
+        public string AutomationName { get; set; }
+
+        /// <summary>
+        /// Remote server, such as Appium server
+        /// </summary>
+        public string RemoteServer { get; set; }
 
         /// <summary>
         /// WebDriver/Browser version. Default value is `Latest`
@@ -34,7 +65,7 @@ namespace Automation.Web.Core.Config
         /// X32 or X64 or Auto. Default value is `Auto`
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public Architecture Platform { get; set; } = Architecture.Auto;
+        public Architecture OSPlatform => Platform == PlatformType.Win32 ? Architecture.X32 : Platform == PlatformType.Win64 ? Architecture.X64 : Architecture.Auto;
 
         /// <summary>
         /// Specify that the browser is going to be run as headless or not. Notice that only Chrome or Firefox supports headless type.
@@ -86,7 +117,23 @@ namespace Automation.Web.Core.Config
                 return new BrowserConfig(browserType);
             }
 
-            return BrowserConfigs.ReadFromConfig(jsonConfigFileName)?.Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig();
+            return BrowserConfigs.ReadFromConfig(jsonConfigFileName)?.Browsers?.FirstOrDefault(x => x.Browser == browserType) ?? new BrowserConfig(browserType);
+        }
+
+        /// <summary>
+        /// Read the BrowserConfig from a json file by Id
+        /// </summary>
+        /// <param name="id">Id of a browser config</param>
+        /// <param name="jsonConfigFileName">The json config file of browser.</param>
+        /// <returns></returns>
+        public static BrowserConfig ReadFromConfig(string id, string jsonConfigFileName = null)
+        {
+            if (string.IsNullOrEmpty(id) && !File.Exists(Path.Combine(Environment.CurrentDirectory, BrowserConfigs.DefaultConfigurationFileName)))
+            {
+                throw new ArgumentException($"Id {id} doesn't exit in the configuration file `{jsonConfigFileName}`");
+            }
+
+            return BrowserConfigs.ReadFromConfig(jsonConfigFileName)?.Browsers?.First(x => x.Id == id);
         }
     }
 }

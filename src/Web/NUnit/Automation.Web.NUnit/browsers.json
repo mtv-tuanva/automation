@@ -1,5 +1,5 @@
 {
-  "ExecutableBrowsers": [ "Chrome", "Edge" ],
+  "ExecutableBrowsers": [ "Chrome", "Firefox" ],
   "Browsers": [
     {
       "Id": "Android",
@@ -52,6 +52,14 @@
       "Arguments": [],
       "ImplicitTimeoutInSecond": 30,
       "DefaultWaitTimeInSecond": 30
+    },
+    {
+      "Id": "Opera",
+      "Browser": "Opera",
+      "LogLevel": "Debug",
+      "Arguments": [],
+      "ImplicitTimeoutInSecond": 10,
+      "DefaultWaitTimeInSecond": 10
     },
     {
       "Id": "Safari",

@@ -1,27 +1,42 @@
 ﻿using Automation.Web.Core;
 using Automation.Web.Core.Config;
+using Automation.Web.NUnit.Attributes;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
 namespace Automation.Web.NUnit
 {
-    [TestFixtureSource(typeof(ExecutableBrowserConfig))]
+    public class WebTestBase : ParallelizableWebTestBase
+    {
+        public WebTestBase(string browserId) : base(browserId)
+        {
+        }
+    }
+
     [Parallelizable(ParallelScope.Self)]
-    public class WebTestBase
+    public class ParallelizableWebTestBase : NonParallelizableWebTestBase
+    {
+        public ParallelizableWebTestBase(string browserId) : base(browserId)
+        {
+        }
+    }
+
+    [BrowserSource(typeof(ExecutableBrowserSourceConfig))]
+    public class NonParallelizableWebTestBase
     {
         protected IBrowser Browser;
-        protected readonly BrowserType BrowserType;
+        protected readonly string BrowserId;
         public virtual ScreenshotCondition ScreenshotCondition { get; set; } = ScreenshotCondition.Failure;
 
-        public WebTestBase(BrowserType browserType)
+        public NonParallelizableWebTestBase(string browserId)
         {
-            BrowserType = browserType;
+            BrowserId = browserId;
         }
 
         [SetUp]
         public virtual void SetUp()
         {
-            Browser = BrowserFactory.CreateBrowser(BrowserType);
+            Browser = BrowserFactory.CreateBrowser(BrowserId);
         }
 
         [TearDown]
@@ -47,8 +62,8 @@ namespace Automation.Web.NUnit
                     }
                     break;
             }
-            
-            Browser.Quit();
+
+            Browser.Dispose();
         }
 
         public string TakeScreenshot(string fileName = null, bool autoAttach = true)
