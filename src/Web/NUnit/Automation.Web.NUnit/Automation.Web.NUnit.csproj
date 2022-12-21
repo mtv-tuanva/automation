@@ -23,12 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Automation.Web.Core" Version="2.0.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Core\Automation.Web.Core\Automation.Web.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
