@@ -32,7 +32,7 @@ namespace Automation.Web.Core.Browsers
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(browserConfig.DefaultWaitTimeInSecond));
         }
 
-        public override void StartScreenRecordingInternal()
+        public override void StartScreenRecording()
         {
             ((AndroidDriver)WebDriver).StartRecordingScreen(
                 AndroidStartScreenRecordingOptions.GetAndroidStartScreenRecordingOptions()
@@ -41,14 +41,14 @@ namespace Automation.Web.Core.Browsers
                     .WithVideoSize("720x1280"));
         }
 
-        public override string StopScreenRecordingInternal(string fileName = null)
+        public override string StopScreenRecording()
         {
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"VideoRecords");
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            fileName = fileName ?? $"Record_{Guid.NewGuid()}.mp4";
+            var fileName = $"Record_{Guid.NewGuid():N}.mp4";
             string fullPath = Path.Combine(folderPath, fileName);
             var videoBase64 = ((AndroidDriver)WebDriver).StopRecordingScreen();
             byte[] videoDecode = Convert.FromBase64String(videoBase64);

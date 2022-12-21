@@ -42,13 +42,20 @@ namespace Automation.Web.Core.Config
                 jsonConfigFileName = DefaultConfigurationFileName;
             }
 
-            var config = new ConfigurationBuilder()
-             .SetBasePath(Environment.CurrentDirectory)
-             .AddJsonFile(jsonConfigFileName, optional: false, reloadOnChange: true)
-             .AddEnvironmentVariables()
-             .Build();
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? Environment.GetEnvironmentVariable("ENVIRONMENT");
 
-            return config;
+            var configBuilder = new ConfigurationBuilder()
+             .SetBasePath(Environment.CurrentDirectory)
+             .AddJsonFile(jsonConfigFileName, optional: false, reloadOnChange: true);
+
+            if (!string.IsNullOrEmpty(env))
+            {
+                var fileNameWithoutExtention = jsonConfigFileName.Substring(0, jsonConfigFileName.LastIndexOf('.'));
+                var extension = jsonConfigFileName.Substring(jsonConfigFileName.LastIndexOf('.') + 1);
+                configBuilder.AddJsonFile($"{fileNameWithoutExtention}.{env}.{extension}", optional: true, reloadOnChange: true);
+            }
+
+            return configBuilder.AddEnvironmentVariables().Build();
         }
     }
 }
