@@ -1,4 +1,5 @@
 ﻿using Automation.Web.Core;
+using Automation.Web.Core.Config;
 using Automation.Web.NUnit;
 using NUnit.Framework;
 using WebTest.Google.Pages;
@@ -36,6 +37,48 @@ namespace WebTest.Google.Scenarios
             //pages.LoginPage.Login("automation.web.test", "0123456789a@T");
 
             Assert.True(pages.HomePage.IsDisplaying());
+        }
+    }
+
+    [TestFixtureSource(typeof(ExecutableBrowserSourceConfig))]
+    public class BrowserTests
+    {
+        private IBrowser browser;
+        private readonly string browserId;
+
+        public BrowserTests(string browserId)
+        {
+            this.browserId = browserId;
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            browser = BrowserFactory.CreateBrowser(browserId);
+
+            //Start screen recording for evidence
+            browser.StartScreenRecording();
+        }
+
+        [Test]
+        public void Test()
+        {
+            browser.Navigation.GoToUrl("https://www.google.com");
+            Assert.True(browser.Title.Contains("Google"));
+        }
+
+        [TearDown]
+        public virtual void TearDown()
+        {
+            //Take screenshot
+            string filePath = browser.TakeAndSaveScreenshot();
+            TestContext.AddTestAttachment(filePath);
+
+            //Stop video recording            
+            browser.StopScreenRecording();
+
+            //Dispose the browser
+            browser.Dispose();
         }
     }
 }

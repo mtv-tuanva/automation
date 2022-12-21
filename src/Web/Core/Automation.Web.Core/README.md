@@ -3,7 +3,7 @@ This is the web automation test library that can help use early to create an aut
 This library is still developing, so please keep looking. Thanks!
 
 # Releate notes
-1. v1.x.x -> v2.0.0
+1. v1.x.x -> v2.0.x
 - Migrate to Selenium.WebDriver 4.7.x
 - Integrate with Appium.WebDriver 5.x.x
 - Support mobile web browsers testing on Android/iOS
@@ -18,6 +18,7 @@ This library is still developing, so please keep looking. Thanks!
 4. Create a `browsers.json` file as below in your test project and set it as a `Content` in the `Build action` and `Copy to Output Directory`
 ```
 {
+  "ExecutableBrowsers": [ "Chrome", "Firefox" ],
   "Browsers": [
     {
       "Id": "Android",
@@ -85,26 +86,24 @@ This configuration is based on your browser version & your expection browser beh
 
 5. Add your test code
 ```
-[TestFixture(BrowserType.Chrome)]
-    [TestFixture(BrowserType.Firefox)]
-    [TestFixture(BrowserType.Edge)]
-    [TestFixture(BrowserType.InternetExplorer)]
-    [TestFixture(BrowserType.Opera)]
-    [TestFixture(BrowserType.Safari)]
+    [TestFixtureSource(typeof(ExecutableBrowserSourceConfig))]
     public class BrowserTests
     {
         private IBrowser browser;
-        private readonly BrowserType browserType;
+        private readonly string browserId;
 
-        public BrowserTests(BrowserType browserType)
+        public BrowserTests(string browserId)
         {
-            this.browserType = browserType;
+            this.browserId = browserId;
         }
 
         [SetUp]
         public void SetUp()
         {
-            browser = BrowserFactory.CreateBrowser(browserType);
+            browser = BrowserFactory.CreateBrowser(browserId);
+
+            //Start screen recording for evidence
+            //browser.StartScreenRecording();
         }
 
         [Test]
@@ -115,12 +114,24 @@ This configuration is based on your browser version & your expection browser beh
         }
 
         [TearDown]
-        public void TearDown()
+        public virtual void TearDown()
         {
-            browser.Quit();
+            //Take screenshot
+            string filePath = browser.TakeAndSaveScreenshot();
+            TestContext.AddTestAttachment(filePath);
+
+            //Stop video recording            
+            //browser.StopScreenRecording();
+
+            //Dispose the browser
+            browser.Dispose();
         }
     }
 ```
+*Note: 
+    - The `StartScreenRecording` & `StopScreenRecording` functions only work when run web test on mobile device. 
+    - To let they work also in Windows OS, please add nuget package `Automation.Web.Core.Forms` https://www.nuget.org/packages/Automation.Web.Core.Forms/
+
 6. Run your test cases and see the magic^^
 
 7. Browser configuration details
@@ -129,6 +140,10 @@ This configuration is based on your browser version & your expection browser beh
 
 7.2 Mobile web testing
 - It's required to have an Appium server to run the Mobile web testing. So, please don't forget to set the `ServerUrl` to the Appium server such as http://127.0.0.1:4723.
+
+# Recommend
+There is another nuget package `Automation.Web.NUnit` that applying the `Automation.Web.Core` with the `NUnit` framework. It also supports to integrate with Specflow for BDD.
+So, let try with it https://www.nuget.org/packages/Automation.Web.NUnit
 
 # APIs document
 1. IBrowser APIs
