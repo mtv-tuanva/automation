@@ -43,6 +43,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
         [AfterScenario]
         public void FinishScenario(IBrowser browser, ISpecFlowOutputHelper specFlowOutputHelper, FeatureContext featureContext, ScenarioContext scenarioContext)
         {
+            var iterateIndex = NextIterateIndex(scenarioContext);
             if (_isAutoRecordScreenshot)
             {
                 string fileName = null;
@@ -54,15 +55,16 @@ namespace Automation.Web.NUnit.Specflow.Hook
                 }
                 var attach = browser.StopScreenRecording(fileName);
                 specFlowOutputHelper.AddAttachment(UploadRecordedVideo(attach));
-                ResetStepIndex(scenarioContext);
             }
 
+            ResetStepIndex(scenarioContext);
             //specFlowOutputHelper.WriteLine("<a src={0}>record video</a>", new Uri(attach));
         }
 
         [AfterStep]
         public void FinishStep(IBrowser browser, ISpecFlowOutputHelper specFlowOutputHelper, FeatureContext featureContext, ScenarioContext scenarioContext)
         {
+            var stepIndex = NextStepIndex(scenarioContext);
             if (_isAutoTakeScreenshot)
             {
                 string fileName = null;
@@ -70,13 +72,12 @@ namespace Automation.Web.NUnit.Specflow.Hook
 
                 if (scenarioId != null)
                 {
-                    fileName = $"{featureContext.Get<string>("browserId")}\\{scenarioId}\\iterate_{GetIterateIndex(scenarioContext)}_step{NextStepIndex(scenarioContext)}";
+                    fileName = $"{featureContext.Get<string>("browserId")}\\{scenarioId}\\iterate_{GetIterateIndex(scenarioContext)}_step{stepIndex}";
                 }
 
                 var attach = browser.TakeAndSaveScreenshot(fileName);
                 specFlowOutputHelper.AddAttachment(UploadScreenShot(attach));
             }
-
 
             //specFlowOutputHelper.WriteLine("<img style=\"width: 50%\" src={0} />", new Uri(attach));
         }
@@ -84,7 +85,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
         private string GetScenarioId(ScenarioContext scenarioContext)
         {
             var scenarioId = scenarioContext.ScenarioInfo.Tags?.Where(x => x.ToLower().StartsWith("id:") || x.ToLower().StartsWith("wi:")).OrderBy(x => x.ToLower()).FirstOrDefault();
-            return scenarioId.Replace(":", "_").Replace(" ", "_");
+            return scenarioId?.Replace(":", "_").Replace(" ", "_");
         }
 
         const string iterate = "iterateIndex";

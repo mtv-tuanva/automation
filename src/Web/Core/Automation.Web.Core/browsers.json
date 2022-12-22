@@ -8,7 +8,7 @@
       "PlatformVersion": "11.0",
       "DeviceName": "My Device1",
       "AutomationName": "UIAutomator2",
-      "ServerUrl": "http://127.0.0.1:4723/wd/hubhttp://127.0.0.1:4723/wd/hub",
+      "ServerUrl": "http://127.0.0.1:4723",
       "IsHeadless": false,
       "LogLevel": "Debug",
       "Arguments": [],

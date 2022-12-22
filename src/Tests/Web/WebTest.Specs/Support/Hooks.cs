@@ -1,8 +1,9 @@
 ﻿using Automation.Web.NUnit.Specflow.Hook;
 using BoDi;
+using NUnit.Framework;
 using WebTest.Specs.Helpers;
 
-//[assembly: Parallelizable(ParallelScope.Fixtures)]
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 namespace WebTest.Specs.Support
 {
