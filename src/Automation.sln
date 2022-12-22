@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnit", "NUnit", "{186200CF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation.Web.NUnit", "Web\NUnit\Automation.Web.NUnit\Automation.Web.NUnit.csproj", "{FA0F8899-2AB5-40F5-8695-22E01FC2410A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Web.Core.Forms", "Web\Core\Automation.Web.Core.Forms\Automation.Web.Core.Forms.csproj", "{24A66DB6-4EA2-412C-B238-813199D88210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation.Web.Core.Forms", "Web\Core\Automation.Web.Core.Forms\Automation.Web.Core.Forms.csproj", "{24A66DB6-4EA2-412C-B238-813199D88210}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTest.Specs", "Tests\Web\WebTest.Specs\WebTest.Specs.csproj", "{202BC433-314A-4469-8A94-AF73E4EE6649}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{24A66DB6-4EA2-412C-B238-813199D88210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24A66DB6-4EA2-412C-B238-813199D88210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24A66DB6-4EA2-412C-B238-813199D88210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202BC433-314A-4469-8A94-AF73E4EE6649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202BC433-314A-4469-8A94-AF73E4EE6649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202BC433-314A-4469-8A94-AF73E4EE6649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202BC433-314A-4469-8A94-AF73E4EE6649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{186200CF-267F-40AB-98A1-2DE0B61C2D17} = {2B321BC7-0BB0-4C2D-A87E-C58EBD8BF7FE}
 		{FA0F8899-2AB5-40F5-8695-22E01FC2410A} = {186200CF-267F-40AB-98A1-2DE0B61C2D17}
 		{24A66DB6-4EA2-412C-B238-813199D88210} = {6BCE0632-66D2-404D-89BE-B257189EC0D7}
+		{202BC433-314A-4469-8A94-AF73E4EE6649} = {AC051875-C245-454C-9092-C4B44C31CF12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CED90D9D-396E-4847-A7C2-A7901B453DC7}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestProfile xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5">
+  <Settings projectName="WebTest.Specs" projectId="{347ddf1e-cf82-4520-8c9b-724ed9d7f5f0}" />
+  <Execution stopAfterFailures="0" testThreadCount="1" testSchedulingMode="Sequential" retryCount="0" apartmentState="MTA"  />
+  <Environment testThreadIsolation="Process" platform="x64"/>
+  <TestAssemblyPaths>
+    <TestAssemblyPath>WebTest.Specs.dll</TestAssemblyPath>
+  </TestAssemblyPaths>
+  <!--<Report>
+    <Template name="Report\ReportTemplate.cshtml"/>
+  </Report>-->
+  
+  <Targets>
+    <Target name="Edge">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Test_Browser" value="Edge" />
+      </DeploymentTransformationSteps>
+    </Target>
+    <Target name="Chrome">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Test_Browser" value="Chrome" />
+      </DeploymentTransformationSteps>
+    </Target>
+    <Target name="Firefox">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Test_Browser" value="Firefox" />
+      </DeploymentTransformationSteps>
+    </Target>
+  </Targets>
+</TestProfile>

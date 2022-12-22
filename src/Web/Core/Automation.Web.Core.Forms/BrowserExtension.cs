@@ -6,7 +6,7 @@ namespace Automation.Web.Core
     {
         public static void WindowsOsStartScreenRecording(this IBrowser browser)
         {
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "VideoRecords");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "videos");
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);

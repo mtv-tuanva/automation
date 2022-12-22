@@ -12,14 +12,21 @@ namespace Automation.Web.Core
 
         public string TakeAndSaveScreenshot(string fileName = null)
         {
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"Screenshots");
-            if (!Directory.Exists(folderPath))
+            if (!string.IsNullOrEmpty(fileName) && !fileName.EndsWith(".png"))
             {
-                Directory.CreateDirectory(folderPath);
+                fileName = $"{fileName}.png";
             }
 
-            fileName = fileName ?? $"Screenshot_{Guid.NewGuid():N}.png";
-            string fullPath = Path.Combine(folderPath, fileName);
+            fileName = fileName ?? $"images/Screenshot_{Guid.NewGuid():N}.png";
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+
+            //Create folder
+            var directory = Path.GetDirectoryName(fullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             WebDriver.GetScreenshot().SaveAsFile(fullPath);
 
             return fullPath;
@@ -30,9 +37,31 @@ namespace Automation.Web.Core
             GetBrowserExtensionType()?.GetMethod("WindowsOsStartScreenRecording").Invoke(null, new object[] { this });
         }
 
-        public virtual string StopScreenRecording()
+        public virtual string StopScreenRecording(string fileName = null)
         {
-            return GetBrowserExtensionType()?.GetMethod("WindowsOsStopScreenRecording").Invoke(null, new object[] { this }) as string;
+            if (!string.IsNullOrEmpty(fileName) && !fileName.EndsWith(".avi"))
+            {
+                fileName = $"{fileName}.avi";
+            }
+
+            var generatedPath = GetBrowserExtensionType()?.GetMethod("WindowsOsStopScreenRecording").Invoke(null, new object[] { this }) as string;
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return generatedPath;
+            }
+
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+
+            //Create folder
+            var directory = Path.GetDirectoryName(fullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.Move(generatedPath, fullPath);
+            return fullPath;
         }
 
         protected Type GetBrowserExtensionType()

@@ -25,7 +25,8 @@ namespace Automation.Web.Core
         /// <summary>
         /// Stop screen recording and save it to the path
         /// </summary>
+        /// <param name="fileName"></param>
         /// <returns>The full path of record file.</returns>
-        string StopScreenRecording();
+        string StopScreenRecording(string fileName = null);
     }
 }

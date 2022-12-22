@@ -42,16 +42,24 @@ namespace Automation.Web.Core.Browsers
                     .WithVideoSize("720x1280"));
         }
 
-        public override string StopScreenRecording()
+        public override string StopScreenRecording(string fileName = null)
         {
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $"VideoRecords");
-            if (!Directory.Exists(folderPath))
+            if (!string.IsNullOrEmpty(fileName) && !fileName.EndsWith(".mp4"))
             {
-                Directory.CreateDirectory(folderPath);
+                fileName = $"{fileName}.mp4";
             }
-            var fileName = $"Record_{Guid.NewGuid():N}.mp4";
-            string fullPath = Path.Combine(folderPath, fileName);
-            var videoBase64 = ((IOSDriver)WebDriver).StopRecordingScreen();
+
+            fileName = fileName ?? $"videos/Record_{Guid.NewGuid():N}.mp4";
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+
+            //Create folder
+            var directory = Path.GetDirectoryName(fullPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            var videoBase64 = ((AndroidDriver)WebDriver).StopRecordingScreen();
             byte[] videoDecode = Convert.FromBase64String(videoBase64);
             File.WriteAllBytes(fullPath, videoDecode);
             return fullPath;
