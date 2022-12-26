@@ -32,7 +32,7 @@ namespace Automation.Web.Core
                 File.Delete(fullPath);
             }
 
-            WebDriver.GetScreenshot().SaveAsFile(fullPath);
+            ((WebElement)FindElementByCssSelector("html")).GetScreenshot().SaveAsFile(fullPath);
 
             return fullPath;
         }
