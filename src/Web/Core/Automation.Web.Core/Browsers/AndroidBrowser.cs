@@ -58,6 +58,11 @@ namespace Automation.Web.Core.Browsers
                 Directory.CreateDirectory(directory);
             }
 
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+
             var videoBase64 = ((AndroidDriver)WebDriver).StopRecordingScreen();
             byte[] videoDecode = Convert.FromBase64String(videoBase64);
             File.WriteAllBytes(fullPath, videoDecode);

@@ -27,6 +27,11 @@ namespace Automation.Web.Core
                 Directory.CreateDirectory(directory);
             }
 
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+
             WebDriver.GetScreenshot().SaveAsFile(fullPath);
 
             return fullPath;
@@ -60,7 +65,16 @@ namespace Automation.Web.Core
                 Directory.CreateDirectory(directory);
             }
 
-            File.Move(generatedPath, fullPath);
+            if (!generatedPath.Equals(fullPath, StringComparison.OrdinalIgnoreCase))
+            {
+                if (File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                }
+
+                File.Move(generatedPath, fullPath);
+            }
+
             return fullPath;
         }
 

@@ -16,7 +16,9 @@ namespace WebTest.Specs.Helpers
 
         public string UploadFile(string filePath)
         {
-            string uploadFileName = filePath.Replace($"{Directory.GetCurrentDirectory()}\\", "").Replace('\\', '/');// $"{DateTime.UtcNow:yyyyMMdd}/{Path.GetFileName(filePath)}";
+            return filePath;
+
+            var uploadFileName = filePath.Replace($"{Directory.GetCurrentDirectory()}\\", "").Replace('\\', '/');// $"{DateTime.UtcNow:yyyyMMdd}/{Path.GetFileName(filePath)}";
             var blobClient = ContainerClient.GetBlobClient(uploadFileName);
 
             //blobClient.Upload(filePath, true);
