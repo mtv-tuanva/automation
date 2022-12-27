@@ -1,7 +1,11 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 using System;
 using System.IO;
 using System.Reflection;
+using WDSE;
+using WDSE.Decorators;
+using WDSE.ScreenshotMaker;
 
 namespace Automation.Web.Core
 {
@@ -32,7 +36,11 @@ namespace Automation.Web.Core
                 File.Delete(fullPath);
             }
 
-            ((WebElement)FindElementByCssSelector("html")).GetScreenshot().SaveAsFile(fullPath);
+            var bytes = WebDriver.TakeScreenshot(new VerticalCombineDecorator(new ScreenshotMaker()));
+            File.WriteAllBytes(fullPath, bytes);
+
+            //((WebElement)FindElementByCssSelector("html")).GetScreenshot().SaveAsFile(fullPath);
+            //WebDriver.GetScreenshot().SaveAsFile(fullPath);
 
             return fullPath;
         }
