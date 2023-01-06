@@ -1,6 +1,7 @@
 ﻿using Automation.Web.Core;
 using Automation.Web.Core.Config;
 using BoDi;
+using OpenQA.Selenium;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
@@ -29,6 +30,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
         {
             featureContext.TryGetValue($"browser", out IBrowser browser);
             objectContainer.RegisterInstanceAs(browser);
+            objectContainer.RegisterInstanceAs<IWebDriver>(browser.WebDriver);
 
             if (_isAutoRecordScreenshot)
                 browser.StartScreenRecording();
