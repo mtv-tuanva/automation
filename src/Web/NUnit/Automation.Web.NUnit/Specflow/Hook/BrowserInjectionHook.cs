@@ -1,5 +1,6 @@
 ﻿using Automation.Web.Core;
 using Automation.Web.Core.Config;
+using Automation.Web.NUnit.Browsers;
 using BoDi;
 using OpenQA.Selenium;
 using System.Linq;
@@ -29,8 +30,19 @@ namespace Automation.Web.NUnit.Specflow.Hook
         public void InitializeWebDriver(ObjectContainer objectContainer, FeatureContext featureContext)
         {
             featureContext.TryGetValue($"browser", out IBrowser browser);
-            objectContainer.RegisterInstanceAs(browser);
-            objectContainer.RegisterInstanceAs<IWebDriver>(browser.WebDriver);
+            if (browser == null)
+            {
+                objectContainer.RegisterTypeAs<DefaultBrowser, IBrowser>();
+                browser = objectContainer.Resolve<IBrowser>();
+                objectContainer.RegisterInstanceAs<IWebDriver>(browser.WebDriver);
+                featureContext.Add("browserId", "Chrome");
+                featureContext.Add("browser", browser);
+            }
+            else
+            {
+                objectContainer.RegisterInstanceAs(browser);
+                objectContainer.RegisterInstanceAs<IWebDriver>(browser.WebDriver);
+            }
 
             if (_isAutoRecordScreenshot)
                 browser.StartScreenRecording();
