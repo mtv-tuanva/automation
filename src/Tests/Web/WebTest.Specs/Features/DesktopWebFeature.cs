@@ -12,4 +12,12 @@ namespace WebTest.Specs.Features
         {
         }
     }
+
+    [BrowserSource(typeof(ExecutableBrowserSourceConfig))]
+    public partial class CalculatorFeature2 : CalculatorFeature
+    {
+        public CalculatorFeature2(string browserID) : base(browserID)
+        {
+        }
+    }
 }

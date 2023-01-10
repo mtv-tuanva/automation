@@ -1,6 +1,7 @@
 ﻿using Automation.Web.Core;
 using NUnit.Framework;
 using System;
+using System.Reflection;
 using TechTalk.SpecFlow;
 
 namespace Automation.Web.NUnit.Specflow.Feature
@@ -27,7 +28,17 @@ namespace Automation.Web.NUnit.Specflow.Feature
         public virtual void SetUp()
         {
             IBrowser browser = null;
-            var runner = ((System.Reflection.TypeInfo)GetType()).GetDeclaredField("testRunner").GetValue(this) as ITestRunner;
+            TypeInfo type = (TypeInfo)GetType();
+            FieldInfo fieldInfo;
+            ITestRunner runner = null;
+
+            while (runner == null || type == null)
+            {
+                fieldInfo = type.GetDeclaredField("testRunner");
+                runner = fieldInfo?.GetValue(this) as ITestRunner;
+                type = (TypeInfo)type.BaseType;
+            }
+
             runner?.FeatureContext?.TryGetValue("browser", out browser);
 
             if (runner != null && browser == null)
