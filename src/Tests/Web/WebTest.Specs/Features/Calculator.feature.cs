@@ -78,16 +78,25 @@ Link to a feature: [Calculator](WebTest.Specs/Features/Calculator.feature)
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User can see the title 3")]
+        [NUnit.Framework.DescriptionAttribute("Verify web title")]
         [NUnit.Framework.CategoryAttribute("test1")]
-        [NUnit.Framework.CategoryAttribute("wi:1")]
-        public void UserCanSeeTheTitle3()
+        [NUnit.Framework.CategoryAttribute("WI:1")]
+        [NUnit.Framework.TestCaseAttribute("\"https://google.com\"", "\"Google\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"https://mail.google.com\"", "\"Gmail\"", null)]
+        public void VerifyWebTitle(string url, string result, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "test1",
-                    "wi:1"};
+                    "WI:1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see the title 3", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("url", url);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify web title", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,13 +108,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 11
- testRunner.Given("I go to \"https://google.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I go to {0}", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
  testRunner.When("The page has been loaded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("I can see the \"Google\" as the title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I can see the {0} as the title", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

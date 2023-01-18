@@ -6,8 +6,13 @@ Link to a feature: [Calculator](WebTest.Specs/Features/Calculator.feature)
 ***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**
 
 @test1
-@wi:1
-Scenario: User can see the title 3
-	Given I go to "https://google.com"
+@WI:1
+Scenario Outline: Verify web title
+	Given I go to <url>
 	When The page has been loaded successfully
-	Then I can see the "Google" as the title
+	Then I can see the <result> as the title
+
+	Scenarios: 
+	| url | result |
+	| "https://google.com" | "Google" |
+	| "https://mail.google.com" | "Gmail" |

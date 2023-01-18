@@ -6,6 +6,10 @@ using WebTest.Google.Pages;
 
 namespace WebTest.Google.Scenarios
 {
+    [TestFixtureSource(typeof(ExecutableBrowserSourceConfig))]
+    [TestFixture()]
+    [Parallelizable(ParallelScope.Fixtures)]
+    [Order(1)]
     public class LoginScenario : NonParallelizableWebTestBase
     {
         private GooglePages pages;
@@ -40,7 +44,10 @@ namespace WebTest.Google.Scenarios
         }
     }
 
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixtureSource(typeof(ExecutableBrowserSourceConfig))]
+    [TestFixture()]
+    [Order(1)]
     public class BrowserTests
     {
         private IBrowser browser;

@@ -75,9 +75,11 @@ namespace WebTest.Specs.Features.Google
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can see the title")]
+        [NUnit.Framework.CategoryAttribute("WI:2")]
         public void UserCanSeeTheTitle()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "WI:2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see the title", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

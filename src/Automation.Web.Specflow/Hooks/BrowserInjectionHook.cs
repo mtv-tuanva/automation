@@ -1,33 +1,26 @@
 ﻿using Automation.Web.Core;
 using Automation.Web.Core.Config;
-using Automation.Web.NUnit.Browsers;
+using Automation.Web.Specflow.Browsers;
 using BoDi;
 using OpenQA.Selenium;
 using System.Linq;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Infrastructure;
 
-namespace Automation.Web.NUnit.Specflow.Hook
+namespace Automation.Web.Specflow.Hooks
 {
-    /// <summary>
-    /// Using BrowserInjectionHook to inject IBrowser into the scenario context, and setting auto take screenshot per steps, or auto take the video record per scenario.
-    /// </summary>
     [Binding]
     public class BrowserInjectionHook
     {
         private readonly bool _isAutoTakeScreenshot = false;
-        private readonly bool _isAutoRecordVideo = false;
+        private readonly bool _isAutoRecordScreenshot = false;
 
         public BrowserInjectionHook() { }
 
-        public BrowserInjectionHook(bool isAutoTakeScreenshot, bool isAutoRecordVideo)
+        public BrowserInjectionHook(bool isAutoTakeScreenshot, bool isAutoRecordScreenshot)
         {
-            _isAutoRecordVideo = isAutoRecordVideo;
+            _isAutoRecordScreenshot = isAutoRecordScreenshot;
             _isAutoTakeScreenshot = isAutoTakeScreenshot;
         }
-
-        protected virtual bool IsAutoTakeScreenShot => _isAutoTakeScreenshot;
-        protected virtual bool IsAutoRecordVideo => _isAutoRecordVideo;
 
         [BeforeScenario]
         public void InitializeWebDriver(ObjectContainer objectContainer, FeatureContext featureContext)
@@ -47,7 +40,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
                 objectContainer.RegisterInstanceAs<IWebDriver>(browser.WebDriver);
             }
 
-            if (IsAutoRecordVideo)
+            if (_isAutoRecordScreenshot)
                 browser.StartScreenRecording();
         }
 
@@ -61,7 +54,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
         public void FinishScenario(IBrowser browser, ISpecFlowOutputHelper specFlowOutputHelper, FeatureContext featureContext, ScenarioContext scenarioContext)
         {
             var iterateIndex = NextIterateIndex(scenarioContext);
-            if (IsAutoRecordVideo)
+            if (_isAutoRecordScreenshot)
             {
                 string fileName = null;
                 var scenarioId = GetScenarioId(scenarioContext);
@@ -82,7 +75,7 @@ namespace Automation.Web.NUnit.Specflow.Hook
         public void FinishStep(IBrowser browser, ISpecFlowOutputHelper specFlowOutputHelper, FeatureContext featureContext, ScenarioContext scenarioContext)
         {
             var stepIndex = NextStepIndex(scenarioContext);
-            if (IsAutoTakeScreenShot)
+            if (_isAutoTakeScreenshot)
             {
                 string fileName = null;
                 var scenarioId = GetScenarioId(scenarioContext);
