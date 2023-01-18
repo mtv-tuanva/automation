@@ -32,6 +32,8 @@ namespace Automation.Web.NUnit.Specflow.Hook
         [BeforeScenario]
         public void InitializeWebDriver(ObjectContainer objectContainer, FeatureContext featureContext)
         {
+            InjectIConfiguration(objectContainer);
+
             featureContext.TryGetValue($"browser", out IBrowser browser);
             if (browser == null)
             {
@@ -51,8 +53,11 @@ namespace Automation.Web.NUnit.Specflow.Hook
                 browser.StartScreenRecording();
         }
 
-        [BeforeScenario]
-        public void InjectIConfiguration(ObjectContainer objectContainer)
+        /// <summary>
+        /// Inject configuration
+        /// </summary>
+        /// <param name="objectContainer"></param>
+        private void InjectIConfiguration(ObjectContainer objectContainer)
         {
             objectContainer.RegisterInstanceAs(BrowserConfigs.ReadConfiguratonFile("appsettings.json"));
         }
