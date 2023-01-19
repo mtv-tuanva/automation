@@ -3,6 +3,7 @@ using Automation.Web.Core.Config;
 using Automation.Web.NUnit.Browsers;
 using BoDi;
 using OpenQA.Selenium;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
@@ -98,7 +99,8 @@ namespace Automation.Web.NUnit.Specflow.Hook
                 }
 
                 var attach = browser.TakeAndSaveScreenshot(fileName);
-                specFlowOutputHelper.AddAttachment(UploadScreenShot(attach));
+                //specFlowOutputHelper.AddAttachment(UploadScreenShot(attach));
+                specFlowOutputHelper.WriteLine("<img style=\"width: 50%\" src={0} />", new Uri(UploadScreenShot(attach)));
             }
 
             //specFlowOutputHelper.WriteLine("<img style=\"width: 50%\" src={0} />", new Uri(attach));
